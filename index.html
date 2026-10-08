@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William Fitz-Gerald Matthew · Solution Consultant, Kraken Tech APAC</title>
+<meta name="description" content="Worked in Kraken. Led a team on it. Trained hundreds on it. Helped design its first distribution product. William Fitz-Gerald Matthew, Melbourne.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04121d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e6f0f2" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2304121d'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%233ff0dc'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300..700&family=Hanken+Grotesk:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* ---------- Metric-matched fallbacks (keep the font swap from shifting layout) ---------- */
+@font-face{font-family:"Sora Fallback";src:local("Arial"),local("Helvetica");size-adjust:108%}
+@font-face{font-family:"Hanken Fallback";src:local("Arial"),local("Helvetica");size-adjust:99.6%}
+@font-face{font-family:"Mono Fallback";src:local("Menlo"),local("Consolas"),local("Courier New");size-adjust:99.7%}
+
+/* ---------- Tokens ---------- */
+:root{
+  color-scheme:dark;
+  --bg-0:#072235;--bg-1:#04121d;--bg-2:#020a12;
+  --ink:#e9f4f6;--ink-2:#a9c1cb;--ink-3:#9db6c1;
+  --teal:#3ff0dc;--amber:#ffb547;--cool:#a3c6ff;
+  --line:#3ff0dc;--line-amber:#ffb547;--line-cool:#8fb8ff;
+  --line-dim:rgba(63,240,220,.3);
+  --fill-teal:#3ff0dc;--fill-amber:#ffb547;--fill-cool:#a3c6ff;--on-fill:#04121d;
+  --spark:#eefffc;
+  --hair:rgba(169,193,203,.18);
+  --panel:rgba(6,26,40,.74);
+  --glow-surface:rgba(120,215,255,.17);
+  --glow-bio:rgba(40,240,210,.11);
+  --tone-amber:rgba(255,170,60,.13);
+  --tone-cool:rgba(120,170,255,.11);
+  --photo-shade:rgba(2,10,18,.38);
+  --particle:120,255,235;--particle-alpha:1;
+  --f-display:"Sora","Sora Fallback",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-body:"Hanken Grotesk","Hanken Fallback",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-mono:"JetBrains Mono","Mono Fallback",ui-monospace,Menlo,Consolas,monospace;
+  --step--1:clamp(.8rem,.78rem + .1vw,.875rem);
+  --step-0:clamp(1rem,.96rem + .2vw,1.125rem);
+  --step-1:clamp(1.12rem,1.04rem + .4vw,1.375rem);
+  --step-2:clamp(1.4rem,1.16rem + 1vw,2rem);
+  --step-3:clamp(1.8rem,1.3rem + 2.2vw,3rem);
+  --step-4:clamp(2.2rem,1.4rem + 3.6vw,4.5rem);
+  --step-5:clamp(2.35rem,1.1rem + 4.7vw,5.4rem);
+  /* one centred content column (--cw) with equal side margins; the current's lane sits just left of it */
+  --cw:1240px;
+  --gap-l:clamp(22px,3.2vw,64px);
+  --content-l:max(calc(20px + var(--gap-l)),calc((100% - var(--cw)) / 2));
+  --content-r:max(clamp(16px,5vw,96px),calc((100% - var(--cw)) / 2));
+  --lane:calc(var(--content-l) - var(--gap-l));
+  --ease-out:cubic-bezier(.16,.84,.24,1);
+}
+@media (prefers-color-scheme:light){
+  :root{
+    color-scheme:light;
+    --bg-0:#f4fafa;--bg-1:#e6f0f2;--bg-2:#d7e7ea;
+    --ink:#05232f;--ink-2:#284653;--ink-3:#40606c;
+    --teal:#005c54;--amber:#8a4700;--cool:#24599f;
+    --line:#00a08f;--line-amber:#d4861a;--line-cool:#3c78d0;
+    --line-dim:rgba(0,120,108,.34);
+    --fill-teal:#006b62;--fill-amber:#8a4700;--fill-cool:#24599f;--on-fill:#ffffff;
+    --spark:#00564e;
+    --hair:rgba(5,35,47,.16);
+    --panel:rgba(255,255,255,.7);
+    --glow-surface:rgba(255,255,255,.85);
+    --glow-bio:rgba(0,160,143,.10);
+    --tone-amber:rgba(217,138,28,.14);
+    --tone-cool:rgba(60,120,208,.11);
+    --photo-shade:rgba(2,10,18,.14);
+    --particle:0,112,100;--particle-alpha:.55;
+  }
+}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--f-body);font-size:var(--step-0);line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3{text-wrap:balance;font-weight:400}
+p,li{text-wrap:pretty}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-80px;z-index:20;padding:.7em 1.1em;border-radius:10px;background:var(--ink);color:var(--bg-1);font-weight:500;text-decoration:none}
+.skip:focus{top:16px}
+.defs,.lane-probe{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.lane-probe{left:var(--lane);top:0}
+
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
+.lenis.lenis-smooth iframe{pointer-events:none}
+
+/* ---------- Depth and plankton ---------- */
+.depth{position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-2) 100%)}
+.depth__surface,.depth__abyss{position:absolute;inset:0}
+.depth__surface{background:radial-gradient(120% 75% at 72% -12%,var(--glow-surface),transparent 62%);opacity:.75}
+.depth__abyss{background:radial-gradient(70% 55% at 12% 108%,var(--glow-bio),transparent 70%),radial-gradient(50% 40% at 92% 70%,var(--glow-bio),transparent 70%),linear-gradient(180deg,transparent 0%,var(--bg-2) 100%);opacity:.45}
+.plankton{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+
+/* ---------- The current ---------- */
+.current{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
+.strand__line{fill:none;stroke:var(--line);stroke-width:1.6}
+.strand__glow{fill:none;stroke:var(--line);stroke-width:8;opacity:.16}
+.spark{opacity:0}
+.spark__halo,.orb__halo{fill:url(#g-spark)}
+.spark__core,.orb__core{fill:var(--spark)}
+.orb__breath{transform-box:fill-box;transform-origin:center;animation:breathe 4.8s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.3);opacity:.65}}
+.node__dot{fill:var(--bg-1);stroke:var(--line-dim);stroke-width:1.5}
+.node.is-lit .node__dot{fill:var(--line);stroke:var(--line)}
+.node__ring{fill:none;stroke:var(--line);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
+.node.is-lit .node__ring{animation:ring 1.3s var(--ease-out) 1 both}
+.node--amber{--line:var(--line-amber)}
+.node--cool{--line:var(--line-cool)}
+@keyframes ring{from{opacity:.9;transform:scale(.6)}to{opacity:0;transform:scale(2.8)}}
+@media (prefers-color-scheme:light){.strand__glow{opacity:.12}}
+
+/* ---------- Masthead ---------- */
+.masthead{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(18px,3.2vh,34px) var(--content-r) 0 var(--content-l)}
+.masthead p{margin:0}
+.masthead__name{font:600 1rem/1.3 var(--f-display);letter-spacing:-.01em;color:var(--ink)}
+.masthead__role{color:var(--teal)}
+.masthead__place{text-wrap:balance;font:400 var(--step--1)/1.4 var(--f-mono);letter-spacing:.04em;color:var(--ink-3)}
+
+/* ---------- Scenes ---------- */
+main{position:relative}
+.scene{position:relative;padding:clamp(88px,14vh,168px) var(--content-r) clamp(88px,14vh,168px) var(--content-l)}
+.scene>:where(:not(.current):not(.tone)){position:relative;z-index:1}
+.eyebrow{margin:0 0 1.3rem;font:500 var(--step--1)/1.45 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.section-head{margin-bottom:clamp(44px,8vh,88px)}
+.section-title{margin:0;font:600 var(--step-4)/1.04 var(--f-display);letter-spacing:-.035em}
+.section-sub{margin:.9rem 0 0;font-size:var(--step-1);color:var(--ink-2);max-width:40ch}
+.section-sub--wide{max-width:none}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:center;min-height:100vh;min-height:100svh;padding:clamp(110px,16vh,180px) var(--content-r) clamp(130px,19vh,210px) var(--content-l)}
+.hero-pin .hero{height:100vh;min-height:0}
+.hero__inner{max-width:62rem;transform-origin:0 50%}
+.tentacles{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.tent{position:absolute;animation:tentRise 1.5s var(--ease-out) var(--in,0s) both}
+.tent__sway{position:absolute;inset:0;transform-origin:var(--ox) var(--oy);animation:sway var(--d,7s) ease-in-out var(--delay,0s) infinite alternate;will-change:transform}
+.tent svg{position:absolute;inset:0;overflow:visible}
+.tent__badge{position:absolute;display:grid;place-items:center;padding:var(--bp,11px) calc(var(--bp,11px) * 1.6);border-radius:999px;background:#fff;box-shadow:0 0 0 1px rgba(63,240,220,.65),0 0 30px -4px rgba(63,240,220,.55),0 14px 32px -12px rgba(0,0,0,.65);transform:translate(-50%,-100%);animation:bob var(--bd,4.6s) ease-in-out var(--delay,0s) infinite alternate;will-change:transform}
+.tent__badge img{display:block;width:auto;height:var(--lh,30px)}
+.hero.is-idle .tent__sway,.hero.is-idle .tent__badge{animation-play-state:paused}
+@keyframes tentRise{from{opacity:0;transform:translateY(38%)}to{opacity:1;transform:none}}
+@keyframes sway{from{transform:rotate(-2.2deg)}to{transform:rotate(2.2deg)}}
+@keyframes bob{from{transform:translate(-50%,-100%) translateY(-5px)}to{transform:translate(-50%,-100%) translateY(5px)}}
+@media (max-width:767px){
+  .hero{align-content:start;padding-top:clamp(124px,17vh,150px);padding-bottom:250px}
+  .hero .scroll-cue{position:relative;left:auto;bottom:auto;transform:none;margin-top:clamp(20px,4vh,36px);justify-self:start}.scroll-cue__inner{align-items:flex-start}.cue-on .cue-live{justify-items:start}
+}
+
+.hero__title{margin:0;font-family:var(--f-display);font-weight:600;font-size:var(--step-5);line-height:1.04;letter-spacing:-.04em}
+.mask{display:block;overflow:hidden;padding:.04em .1em .12em 0;margin-bottom:-.08em}
+.mask>span{display:inline-block}
+.accent{color:var(--teal)}
+.hero__sub{margin:1.9rem 0 0;max-width:36ch;font-size:var(--step-1);line-height:1.55;color:var(--ink-2)}
+.scroll-cue{position:absolute;left:50%;bottom:clamp(14px,3.5vh,36px);transform:translateX(-50%);z-index:2}
+.scroll-cue__inner{display:flex;flex-direction:column;align-items:center;gap:12px;font:500 .78rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.has-scrolled .scroll-cue__inner{opacity:0;transform:translateY(10px)}
+.scroll-cue__label{white-space:nowrap;padding:.7em 1.2em;border:1px solid var(--hair);border-radius:99px;background:var(--panel)}
+.cue-live{display:none}
+.cue-on .cue-static{display:none}
+.cue-on .scroll-cue__label{padding:0;border:0;background:none}
+.cue-on .cue-live{display:grid;justify-items:center;gap:.5rem}
+.cue-words{display:inline-grid;overflow:hidden;padding:.05em .1em;font:600 var(--step-1)/1.2 var(--f-display);letter-spacing:-.02em;text-transform:none;color:var(--teal)}
+.cue-word{grid-area:1/1;text-align:center;transform:translateY(105%);opacity:0;transition:transform .6s var(--ease-out),opacity .45s ease}
+.cue-word.is-on{transform:none;opacity:1}
+.cue-word.is-out{transform:translateY(-105%);opacity:0}
+
+.scroll-cue__track{position:relative;width:1px;height:48px;overflow:hidden;background:var(--hair)}
+.scroll-cue__dot{position:absolute;left:-1.5px;top:0;width:4px;height:14px;border-radius:2px;background:var(--line);animation:cue 1.9s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes cue{from{transform:translateY(-16px)}to{transform:translateY(50px)}}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero__title .mask>span{animation:rise 1s var(--ease-out) .08s both}
+  .hero__title .mask+.mask>span{animation-delay:.2s}
+  .hero__eyebrow{animation:fade .7s ease-out both}
+  .hero__sub{animation:fadeUp .85s var(--ease-out) .55s both}
+  .masthead{animation:fade .9s ease-out .35s both}
+  .scroll-cue{animation:fade .6s ease-out 1.1s both}
+}
+@keyframes rise{from{transform:translateY(106%)}to{transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Chapters: flow (default, no-JS, mobile) */
+.chapters__head{margin-bottom:clamp(48px,9vh,96px)}
+.chapters__head .eyebrow{margin-bottom:.6rem}
+.timeline{margin:0;max-width:46rem;display:grid}
+.timeline__row{--tone:var(--teal);position:relative;display:grid;grid-template-columns:7.5rem minmax(0,1fr) auto;gap:.1rem 1.25rem;align-items:baseline;padding:.5rem 0 .5rem .9rem;border-top:1px solid var(--hair);font:400 var(--step--1)/1.45 var(--f-mono);color:var(--ink-3)}
+.timeline__row:last-child{border-bottom:1px solid var(--hair)}
+.timeline__row--sap{--tone:var(--cool)}
+.timeline__row::before{content:"";position:absolute;left:0;top:.55rem;bottom:.55rem;width:2px;border-radius:2px;background:var(--tone);transform:scaleY(.35);opacity:.5;transition:transform .45s var(--ease-out),opacity .45s var(--ease-out)}
+.timeline__row.is-current::before{transform:none;opacity:1}
+.timeline dt{color:var(--tone);letter-spacing:.1em;text-transform:uppercase}
+.timeline dd{margin:0}
+.timeline__org{font-family:var(--f-body);font-size:var(--step-0);font-weight:500;color:var(--ink)}
+.timeline__org span{display:block;font:400 var(--step--1)/1.45 var(--f-mono);color:var(--ink-3)}
+.timeline__date{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+@media (max-width:599px){.timeline__row{grid-template-columns:minmax(0,1fr) auto}.timeline__org{grid-column:1/-1;grid-row:2}}
+@media (min-width:900px){.timeline{max-width:none}.timeline__row{padding-block:.4rem}.timeline__org span{display:inline;margin-left:.9rem}.timeline__org span::before{content:"· ";color:var(--ink-3)}}
+.ch-list{display:grid;gap:clamp(80px,14vh,140px)}
+.ch{--tone:var(--teal);display:grid;gap:clamp(14px,3vw,56px)}
+.ch--amber{--tone:var(--amber);--line:var(--line-amber)}
+.ch--cool{--tone:var(--cool);--line:var(--line-cool)}
+.ch__display{display:flex;flex-direction:column;gap:.35rem}
+.ch__num{font:200 clamp(3rem,1.9rem + 5vw,6.25rem)/.9 var(--f-display);letter-spacing:-.05em;color:var(--tone);font-variant-numeric:lining-nums}
+.ch__key{font:600 var(--step-3)/1.06 var(--f-display);letter-spacing:-.035em;color:var(--ink)}
+.ch__meta{margin:0 0 .7rem;font:500 var(--step--1)/1.55 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.ch__tag{display:inline-block;margin-right:.6em;padding:.1em .6em;border:1px solid var(--tone);border-radius:99px;color:var(--tone);letter-spacing:.12em}
+.ch__title{margin:0 0 1rem;font:500 var(--step-2)/1.2 var(--f-display);letter-spacing:-.025em}
+.ch__line{margin:0 0 1.25rem;padding-left:1rem;border-left:2px solid var(--tone);font:400 var(--step-1)/1.5 var(--f-display);letter-spacing:-.01em;color:var(--tone);max-width:52ch}
+.ch__points{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;max-width:68ch;color:var(--ink-2)}
+.ch__points li{position:relative;padding-left:1.4rem}
+.ch__points strong{font-weight:500;color:var(--ink)}
+.ch__points li::before{content:"";position:absolute;left:0;top:.8em;width:.7rem;height:1px;background:var(--tone)}
+.ch__link{display:inline-flex;align-items:center;gap:.45em;margin-top:1.1rem;padding-bottom:.3em;border-bottom:1px solid color-mix(in srgb,var(--tone) 45%,transparent);font:500 var(--step--1)/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tone);text-decoration:none}
+.ch__link svg{width:14px;height:14px}
+.ch__link:hover{border-bottom-color:currentColor}
+.ch__impact{display:flex;flex-wrap:wrap;align-items:baseline;gap:.45rem 1.25rem;margin-top:1.15rem;padding-top:.8rem;border-top:1px solid var(--hair)}
+.ch__impact-k{font:500 var(--step--1)/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.ch__stats{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.45rem 1.4rem}
+.ch__stats li{display:inline-flex;align-items:baseline;gap:.45em;font-size:var(--step--1);color:var(--ink-2)}
+.ch__stats b{font:500 1.2em/1 var(--f-mono);font-variant-numeric:tabular-nums;color:var(--tone)}
+.gal{display:grid;gap:.6rem;width:min(100%,520px)}
+.ch-stage .gal{width:min(100%,52vh,540px)}
+@media (min-width:1100px){.gal,.ch-stage .gal{width:min(50vh,500px)}.ch__display{max-width:min(50vh,500px)}.ch-stage .ch__key{font-size:clamp(1.8rem,.9rem + 2vw,2.75rem)}}
+.gal__stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:14px;background:var(--bg-2)}
+.gal__stage::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tone) 40%,transparent)}
+.gal__track{position:absolute;inset:0}
+.gal__slide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .8s ease}
+.gal__slide:first-child,.gal__slide.is-on{opacity:1}
+.gal--js .gal__slide:not(.is-on){opacity:0}
+.gal__bg{position:absolute;left:-6%;top:-6%;width:112%;height:112%;object-fit:cover}
+.gal__img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.gal__thumbs{display:flex;gap:.5rem}
+.gal__thumbs[hidden]{display:none}
+.gal__thumb{position:relative;flex:0 0 auto;width:clamp(64px,7vw,84px);aspect-ratio:4/3;padding:0;border:0;border-radius:8px;overflow:hidden;background:var(--bg-2);cursor:pointer}
+.gal__thumb img{display:block;width:100%;height:100%;object-fit:cover;opacity:.45;transition:opacity .35s ease}
+.gal__thumb:hover img,.gal__thumb.is-on img{opacity:1}
+.gal__thumb::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--hair);pointer-events:none}
+.gal__thumb.is-on::after{box-shadow:inset 0 0 0 2px var(--tone)}
+.gal__thumb::before{content:"";position:absolute;left:0;right:0;bottom:0;z-index:1;height:3px;background:var(--tone);transform:scaleX(0);transform-origin:left}
+.gal__thumb.is-on::before{animation:galprog 5.5s linear forwards}
+.gal:hover .gal__thumb.is-on::before,.gal:focus-within .gal__thumb.is-on::before,.gal.is-idle .gal__thumb.is-on::before,.ch-stage .ch:not(.is-active) .gal__thumb::before,.lb-open .gal__thumb::before{animation-play-state:paused}
+@keyframes galprog{to{transform:scaleX(1)}}
+.gal__open{position:absolute;inset:0;z-index:3;margin:0;padding:0;border:0;border-radius:inherit;background:transparent;color:#fff;cursor:zoom-in}
+.gal__open:focus-visible{outline:2px solid var(--teal);outline-offset:-4px}
+.gal__open svg{position:absolute;right:10px;bottom:10px;width:32px;height:32px;padding:8px;border-radius:50%;background:rgba(2,10,18,.62);opacity:.75;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
+.gal__stage:hover .gal__open svg,.gal__open:focus-visible svg{opacity:1;transform:scale(1.08)}
+@media (prefers-reduced-motion:reduce){.gal__thumb::before{display:none}}
+
+/* Photo viewer */
+.lightbox{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(16px,4vw,64px) clamp(64px,7vw,96px);border:0;background:rgba(2,8,14,.94);color:#e9f4f6;overflow:hidden}
+.lightbox[open]{display:grid;place-items:center;animation:fade .25s ease-out}
+.lightbox::backdrop{background:transparent}
+.lightbox__fig{margin:0;display:grid;justify-items:center;gap:1rem;min-height:0;max-height:100%}
+.lightbox__img{display:block;max-width:100%;max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px);width:auto;height:auto;border-radius:12px;animation:fade .3s ease-out}
+.lightbox__cap{max-width:62ch;text-align:center;font-size:var(--step--1);line-height:1.5;color:#a9c1cb}
+.lightbox__cap b{display:block;margin-bottom:.35rem;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#3ff0dc}
+.lightbox__count{position:absolute;left:50%;top:22px;transform:translateX(-50%);margin:0;font:500 .75rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#a9c1cb}
+.lightbox__btn{position:absolute;display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid rgba(233,244,246,.28);border-radius:50%;background:rgba(4,18,29,.75);color:#e9f4f6;cursor:pointer;transition:transform .3s var(--ease-out)}
+.lightbox__btn:hover{transform:scale(1.06)}
+.lightbox__btn svg{width:20px;height:20px}
+.lightbox__btn[hidden]{display:none}
+.lightbox__close{top:12px;right:12px}
+.lightbox__prev{left:12px;top:50%;margin-top:-24px}
+.lightbox__next{right:12px;top:50%;margin-top:-24px}
+.lightbox :focus-visible{outline-color:#3ff0dc}
+html.lb-open{overflow:hidden}
+@media (min-width:1100px){
+  .ch{grid-template-columns:auto minmax(0,1fr);column-gap:clamp(40px,4.5vw,72px);grid-template-areas:"disp body" "photos body";grid-template-rows:auto 1fr;row-gap:clamp(18px,3vh,32px);align-items:start}
+  .ch__display{grid-area:disp}.gal{grid-area:photos}.ch__body{grid-area:body}
+}
+.tone{position:absolute;inset:0;opacity:0;pointer-events:none;z-index:0}
+.tone--amber{background:radial-gradient(60% 60% at 30% 52%,var(--tone-amber),transparent 72%)}
+.tone--cool{background:radial-gradient(60% 60% at 30% 52%,var(--tone-cool),transparent 72%)}
+
+/* Chapters: pinned stage */
+.rail{display:none}
+.ch-stage .chapters{height:100vh;padding:0}
+.ch-stage .chapters__head{position:absolute;top:clamp(28px,8vh,84px);left:var(--content-l);right:var(--content-r);margin:0}
+.ch-stage .ch-list{position:absolute;inset:0;gap:0;align-content:center;align-items:start;padding:calc(clamp(28px,8vh,84px) + 8rem) var(--content-r) clamp(24px,6vh,64px) var(--content-l)}
+.ch-stage .ch{grid-area:1/1}
+.ch-stage .ch:not(.is-active){pointer-events:none}
+@media (max-height:880px){
+  .ch-stage .chapters__head{top:clamp(18px,4vh,40px)}
+  .ch-stage .ch-list{padding-top:calc(clamp(18px,4vh,40px) + 7.6rem);padding-bottom:clamp(16px,3vh,32px)}
+  .ch-stage .ch__points{gap:.4rem;font-size:.95rem;line-height:1.5}
+  .ch-stage .ch__title{margin-bottom:.6rem}
+  .ch-stage .ch__line{margin-bottom:.85rem}
+  .ch-stage .ch__impact{margin-top:.75rem;padding-top:.6rem}
+  .ch-stage .ch__line{font-size:var(--step-0);margin-bottom:.7rem}
+  .ch-stage .gal__thumb{width:60px}
+  .ch-stage .gal{gap:.45rem}
+  .ch-stage .ch__num{font-size:clamp(2.6rem,1.6rem + 4vw,4.75rem)}
+}
+.ch-stage .rail{display:block;position:absolute;z-index:3;left:var(--lane);top:50%;transform:translate(-50%,-50%)}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(22px,7vh,64px)}
+.rail li{--fill:var(--fill-teal)}
+.rail li:nth-child(3){--line:var(--line-amber);--fill:var(--fill-amber)}
+.rail li:nth-child(4){--line:var(--line-cool);--fill:var(--fill-cool)}
+.rail a{position:relative;isolation:isolate;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line-dim);background:var(--bg-1);color:var(--ink-2);font:500 .78rem/1 var(--f-mono);text-decoration:none;transition:transform .45s var(--ease-out)}
+.rail a::before{content:"";position:absolute;inset:-1.5px;z-index:-1;border-radius:50%;background:var(--fill);opacity:0;transition:opacity .4s var(--ease-out)}
+.rail a::after{content:"";position:absolute;inset:-1.5px;border-radius:50%;border:1.5px solid var(--line);opacity:0;pointer-events:none}
+.rail a:hover{border-color:var(--line)}
+.rail a.is-lit{border-color:var(--fill);color:var(--on-fill)}
+.rail a.is-lit::before{opacity:1}
+.rail a.is-lit::after{animation:ring 1.3s var(--ease-out) 1 both}
+.rail a[aria-current="step"]{transform:scale(1.18)}
+
+/* Customer value */
+.value__grid{display:grid;gap:clamp(56px,9vh,88px)}
+.value__col{--tone:var(--teal)}
+.value__col--amber{--tone:var(--amber);--line:var(--line-amber)}
+.value__brand{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.8rem}
+.value__logo{display:block;flex:none;width:auto;filter:brightness(0) invert(1);opacity:.94}
+.value__logo--origin{height:60px}
+.value__logo--essential{height:42px}
+.value__meta{margin:0;padding-left:1.1rem;border-left:1px solid var(--hair);font:500 var(--step--1)/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.figs__group{margin:0 0 1.1rem;font:500 var(--step--1)/1.4 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tone)}
+.figs+.figs__group{margin-top:2.4rem}
+@media (prefers-color-scheme:light){.value__logo{filter:brightness(0);opacity:.86}}
+.figs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,128px),1fr));gap:32px 20px}
+.fig{display:grid;gap:.3rem;align-content:start}
+.fig__num{display:inline-block;min-width:4.2ch;font:400 clamp(2.3rem,1.7rem + 2vw,3.4rem)/1 var(--f-mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--tone)}
+.fig__label{font:500 var(--step-0)/1.35 var(--f-display);letter-spacing:-.01em;color:var(--ink)}
+.fig__ctx{max-width:28ch;font-size:var(--step--1);line-height:1.5;color:var(--ink-3)}
+.wins{list-style:none;margin:0;padding:0;display:grid;gap:1.5rem}
+.wins li{padding-left:1.1rem;border-left:2px solid var(--tone)}
+.wins b{display:block;margin-bottom:.3rem;font:600 var(--step-1)/1.25 var(--f-display);letter-spacing:-.02em;color:var(--ink)}
+.wins span{color:var(--ink-2)}
+@media (min-width:900px){.value__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,88px)}.figs{grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:36px 28px}}
+
+/* What I'd bring */
+.bring__list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(44px,8vh,84px)}
+.bring__item{max-width:54rem}
+@media (min-width:1100px){
+  .bring{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,4.5vw,72px);align-items:start}
+  .bring .section-head{position:sticky;top:clamp(80px,18vh,180px);margin:0}
+}
+.bring__lead{margin:0 0 .45rem;font:600 var(--step-3)/1.1 var(--f-display);letter-spacing:-.035em}
+.bring__item p{margin:0;max-width:48ch;font-size:var(--step-1);color:var(--ink-2)}
+.bring__item .bring__k{margin:0 0 .55rem;font:500 var(--step--1)/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+
+/* Close and contact */
+.close{display:flex;flex-direction:column;justify-content:center;min-height:66vh;padding-bottom:clamp(110px,18vh,180px)}
+.close__line{margin:0;max-width:18ch;font:600 var(--step-4)/1.08 var(--f-display);letter-spacing:-.035em}
+.close__vis .w{display:inline-block}
+.close__eyebrow{margin-bottom:1rem}
+.close__sub{margin:1.6rem 0 0;max-width:40ch;font:400 var(--step-2)/1.4 var(--f-display);letter-spacing:-.02em;color:var(--ink-2)}
+.close__sub strong{font-weight:600;color:var(--teal)}
+.contact{position:relative;display:flex;flex-direction:column;gap:.4rem;min-height:34vh;padding:clamp(8px,2vh,24px) var(--content-r) clamp(36px,7vh,72px) var(--content-l)}
+.contact p{margin:0}
+.contact__grid{display:grid;gap:clamp(28px,5vh,40px);align-items:center}
+.contact__id{display:flex;align-items:center;gap:clamp(16px,2vw,24px)}
+.contact__photo{flex:none;display:grid;place-items:center;width:clamp(112px,12vw,160px);aspect-ratio:1;overflow:hidden;border-radius:50%;background:var(--panel);box-shadow:0 0 0 1px var(--hair),0 0 0 7px color-mix(in srgb,var(--line) 14%,transparent);font:600 1.4rem/1 var(--f-display);letter-spacing:-.03em;color:var(--teal)}
+.contact__photo img{display:block;width:100%;height:100%;object-fit:cover}
+.contact__name{font:600 var(--step-2)/1.2 var(--f-display);letter-spacing:-.025em}
+.contact__place{margin-top:.35rem!important;font:400 var(--step--1)/1.5 var(--f-mono);color:var(--ink-3)}
+.contact__list{list-style:none;margin:0;padding:0;display:grid}
+.contact__list li{display:grid;grid-template-columns:6.5rem minmax(0,1fr) auto;align-items:center;gap:.4rem 1rem;min-height:58px;padding:.45rem 0;border-top:1px solid var(--hair)}
+.contact__list li:last-child{border-bottom:1px solid var(--hair)}
+.contact__k{font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.contact__v{font:500 var(--step-1)/1.3 var(--f-mono);color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
+a.contact__v{text-decoration:underline;text-decoration-color:var(--hair);text-underline-offset:.3em;text-decoration-thickness:1px}
+a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
+.contact__email{-webkit-user-select:all;user-select:all}
+@media (min-width:900px){.contact__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(32px,6vw,96px)}}
+@media (max-width:599px){.contact__list li{grid-template-columns:minmax(0,1fr) auto;padding:.7rem 0}.contact__k{grid-column:1/-1}.contact__v{font-size:var(--step-0)}.contact__email-row .contact__v{grid-column:1/-1}.contact__email-row .copy{justify-self:start}}
+.pill{display:inline-flex;align-items:center;gap:.5em;min-height:42px;padding:.6em 1.15em;border:1px solid var(--hair);border-radius:99px;background:var(--panel);color:var(--ink);font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .35s var(--ease-out)}
+.pill:hover{border-color:var(--line);transform:translateY(-2px)}
+.pill[hidden]{display:none}
+.status{min-height:1.5em;margin-top:.4rem!important;font:400 var(--step--1)/1.5 var(--f-mono);color:var(--teal)}
+.clocks{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem clamp(28px,4vw,56px);margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--hair)}
+.clocks[hidden]{display:none}
+.clock{display:grid;grid-template-columns:auto auto;align-items:baseline;gap:.45rem .7rem}
+.clock__city{grid-column:1/-1;font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.clock__time{font:500 var(--step-3)/1 var(--f-mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.clock__day{font:400 var(--step--1)/1 var(--f-mono);color:var(--ink-3)}
+
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .scroll-cue{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contact">Skip to contact details</a>
+
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <radialGradient id="g-spark">
+      <stop offset="0" style="stop-color:var(--spark);stop-opacity:.95"/>
+      <stop offset=".3" style="stop-color:var(--line);stop-opacity:.5"/>
+      <stop offset="1" style="stop-color:var(--line);stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+</svg>
+<div class="lane-probe" aria-hidden="true"></div>
+<div class="depth" aria-hidden="true"><div class="depth__surface"></div><div class="depth__abyss"></div></div>
+<canvas class="plankton" aria-hidden="true"></canvas>
+
+<header class="masthead">
+  <p class="masthead__name">William Fitz-Gerald Matthew</p>
+  <p class="masthead__place">Applying for <span class="masthead__role">Solution Consultant, Kraken Tech APAC</span> · Melbourne-based role</p>
+</header>
+
+<main>
+  <!-- 1 · Hero -->
+  <section class="scene hero" id="hero" aria-labelledby="hero-title">
+    <svg class="current" aria-hidden="true" focusable="false"></svg>
+    <div class="hero__inner">
+      <p class="eyebrow hero__eyebrow">Operator · Team lead · Builder · Seller</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="mask"><span>I’ve seen <span class="accent">Kraken</span></span></span>
+        <span class="mask"><span>from every side.</span></span>
+      </h1>
+      <p class="hero__sub">I’ve used Kraken on the floor, led a team on it, scaled it offshore and helped build its first distribution product. This is that story, in about two minutes.</p>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <div class="scroll-cue__inner">
+        <span class="scroll-cue__label"><span class="cue-static">Scroll to explore</span><span class="cue-live">Scroll to meet <span class="cue-words"><span class="cue-word is-on">the energy specialist</span><span class="cue-word">the team lead</span><span class="cue-word">the trainer</span><span class="cue-word">the product builder</span><span class="cue-word">the value seller</span></span></span></span>
+        <span class="scroll-cue__track"><span class="scroll-cue__dot"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Chapters -->
+  <section class="scene chapters" id="chapters" aria-labelledby="chapters-title">
+    <svg class="current" aria-hidden="true" focusable="false"></svg>
+    <div class="tone tone--amber" aria-hidden="true"></div>
+    <div class="tone tone--cool" aria-hidden="true"></div>
+    <div class="chapters__head" data-reveal>
+      <h2 class="eyebrow" id="chapters-title">Four chapters</h2>
+      <dl class="timeline">
+        <div class="timeline__row">
+          <dt>Chapters 1–3</dt>
+          <dd class="timeline__org">Accenture, delivering on Kraken<span>Management Consultant, promoted from Analyst</span></dd>
+          <dd class="timeline__date">09/2022 – 02/2026</dd>
+        </div>
+        <div class="timeline__row timeline__row--sap">
+          <dt>Chapter 4</dt>
+          <dd class="timeline__org">SAP<span>Customer Success Manager</span></dd>
+          <dd class="timeline__date">03/2026 – present</dd>
+        </div>
+      </dl>
+    </div>
+    <nav class="rail" aria-label="Chapters">
+      <ol>
+        <li><a href="#ch-1" aria-label="Chapter 1: Using it">1</a></li>
+        <li><a href="#ch-2" aria-label="Chapter 2: Scaling it">2</a></li>
+        <li><a href="#ch-3" aria-label="Chapter 3: Building it">3</a></li>
+        <li><a href="#ch-4" aria-label="Chapter 4: Learning to sell value">4</a></li>
+      </ol>
+    </nav>
+
+    <div class="ch-list">
+      <article class="ch" id="ch-1" aria-labelledby="ch-1-title">
+        <div class="ch__display" aria-hidden="true"><span class="ch__num">01</span><span class="ch__key">Using it</span></div>
+        <div class="gal" role="group" aria-label="Photos from chapter 1">
+        <div class="gal__stage"><div class="gal__track">
+          <figure class="gal__slide is-on"><img class="gal__bg" src="img/ch1-lead-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" src="img/ch1-lead-m.webp" width="760" height="570" alt="Four colleagues standing together in a contact centre, one holding a small star trophy, with whiteboards and balloons behind them" loading="lazy" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch1-team-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" data-src="img/ch1-team-m.webp" width="760" height="570" alt="A large team gathered on an indoor staircase for a group photo" decoding="async"></figure>
+        </div></div>
+        <div class="gal__thumbs" hidden>
+          <button class="gal__thumb is-on" type="button" aria-label="Show photo 1 of 2" aria-pressed="true"><img src="img/ch1-lead-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 2 of 2" aria-pressed="false"><img src="img/ch1-team-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+        </div>
+      </div>
+        <div class="ch__body">
+          <p class="ch__meta">Origin Energy · Kraken Customer (retail)</p>
+          <h3 class="ch__title" id="ch-1-title"><span class="vh">Chapter 1. </span>Using it every day: from energy specialist to team lead</h3>
+          <p class="ch__line">“I know what the platform feels like to the people using it.”</p>
+          <ul class="ch__points">
+            <li><strong>Started as an Energy Specialist.</strong> Learnt the energy market and used Kraken every day in all the ways the energy specialist model demands, through Origin’s post-go-live stabilisation.</li>
+            <li><strong>Then led 20 of them.</strong> As Customer Operations Lead for a team of 20 energy specialists, I went deeper into the operating model and sharpened my command of Kraken from the team-lead seat.</li>
+            <li><strong>Continuous improvement and innovation.</strong> Diagnosed root causes and drove process redesign with Kraken’s product and technology teams, and took AI strategy to Origin Energy senior leadership: intelligent IVR, generative AI chatbots and platform capabilities.</li>
+          </ul>
+          <div class="ch__impact"><span class="ch__impact-k">Impact</span><ul class="ch__stats" aria-label="Chapter 1 impact">
+            <li><b>20</b> energy specialists led</li>
+            <li><b>−80%</b> customer wait times</li>
+            <li><b>+25%</b> CSAT</li>
+          </ul></div>
+        </div>
+      </article>
+
+      <article class="ch" id="ch-2" aria-labelledby="ch-2-title">
+        <div class="ch__display" aria-hidden="true"><span class="ch__num">02</span><span class="ch__key">Scaling it</span></div>
+        <div class="gal" role="group" aria-label="Photos from chapter 2">
+        <div class="gal__stage"><div class="gal__track">
+          <figure class="gal__slide is-on"><img class="gal__bg" src="img/ch2-lead-b.webp" width="570" height="760" alt="" decoding="async"><img class="gal__img" src="img/ch2-lead-m.webp" width="570" height="760" alt="A selfie with a group of smiling colleagues in a contact centre" loading="lazy" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch2-floor-b.webp" width="570" height="760" alt="" decoding="async"><img class="gal__img" data-src="img/ch2-floor-m.webp" width="570" height="760" alt="A contact centre floor, with a colleague in a Kraken T-shirt walking between rows of desks" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch2-pumpkins-b.webp" width="570" height="760" alt="" decoding="async"><img class="gal__img" data-src="img/ch2-pumpkins-m.webp" width="570" height="760" alt="Three colleagues in pumpkin costumes at an office Halloween celebration" decoding="async"></figure>
+        </div></div>
+        <div class="gal__thumbs" hidden>
+          <button class="gal__thumb is-on" type="button" aria-label="Show photo 1 of 3" aria-pressed="true"><img src="img/ch2-lead-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 2 of 3" aria-pressed="false"><img src="img/ch2-floor-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 3 of 3" aria-pressed="false"><img src="img/ch2-pumpkins-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+        </div>
+      </div>
+        <div class="ch__body">
+          <p class="ch__meta">Manila · Offshoring Origin’s Kraken residential team</p>
+          <h3 class="ch__title" id="ch-2-title"><span class="vh">Chapter 2. </span>Scaling the energy specialist model offshore</h3>
+          <p class="ch__line">“Explaining Kraken to people who’ve never seen it is a demo, every single day.”</p>
+          <ul class="ch__points">
+            <li><strong>Shaped the deal.</strong> Front and centre in providing the insight behind the offshoring contract with Origin Energy, then put in place to hit its goals.</li>
+            <li><strong>Built the training on the ground.</strong> Two months in Manila through the pivotal ramp, creating the frameworks and curriculum that taught new energy specialists Kraken end to end: payments, service requests, life support registrations and the compliance rules behind them.</li>
+            <li><strong>The bridge between Accenture and Origin leadership.</strong> Trusted advisor on building Kraken-native teams, presenting progress to both and working with Kraken’s teams on the ground, particularly DigiOps.</li>
+            <li><strong>Took the model to Tokyo Gas.</strong> On the back of that success, presented the energy specialist model and Kraken’s usability to Tokyo Gas senior leadership, and it was well received.</li>
+          </ul>
+          <div class="ch__impact"><span class="ch__impact-k">Impact</span><ul class="ch__stats" aria-label="Chapter 2 impact">
+            <li><b>300+</b> FTE ramped on Kraken</li>
+            <li><b>−30%</b> after-call work</li>
+            <li><b>50%</b> faster onboarding</li>
+          </ul></div>
+        </div>
+      </article>
+
+      <article class="ch ch--amber" id="ch-3" aria-labelledby="ch-3-title">
+        <div class="ch__display" aria-hidden="true"><span class="ch__num">03</span><span class="ch__key">Building it</span></div>
+        <div class="gal" role="group" aria-label="Photos from chapter 3">
+        <div class="gal__stage"><div class="gal__track">
+          <figure class="gal__slide is-on"><img class="gal__bg" src="img/ch3-lead-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" src="img/ch3-lead-m.webp" width="760" height="570" alt="A group wearing orange hard hats on a site visit" loading="lazy" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch3-medals-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" data-src="img/ch3-medals-m.webp" width="760" height="570" alt="Six people wearing medals on a sunny lawn at a team event" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch3-waterside-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" data-src="img/ch3-waterside-m.webp" width="760" height="570" alt="A large group cheering on the grass beside the water" decoding="async"></figure>
+        </div></div>
+        <div class="gal__thumbs" hidden>
+          <button class="gal__thumb is-on" type="button" aria-label="Show photo 1 of 3" aria-pressed="true"><img src="img/ch3-lead-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 2 of 3" aria-pressed="false"><img src="img/ch3-medals-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 3 of 3" aria-pressed="false"><img src="img/ch3-waterside-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+        </div>
+      </div>
+        <div class="ch__body">
+          <p class="ch__meta"><span class="ch__tag">Milestone</span>Essential Energy · Kraken Distribution · Functional Consultant</p>
+          <h3 class="ch__title" id="ch-3-title"><span class="vh">Chapter 3. </span>Building it from the ground up</h3>
+          <ul class="ch__points">
+            <li><strong>On the inaugural team.</strong> Shaping the functional requirements for the first Kraken Distribution product: Kraken’s first distributor meter-to-cash implementation, anywhere.</li>
+            <li><strong>Service orders and B2B market transactions.</strong> Worked hand in hand with multiple Kraken CDLs, taking requirements and solution cards through to release.</li>
+            <li><strong>Then reporting.</strong> Developed functional and technical reporting requirements, in line with Kraken’s reporting CDLs.</li>
+            <li><strong>Lessons that carry forward.</strong> The product we built, and what we learnt building it, are the foundation for the Kraken distribution implementations that follow.</li>
+          </ul>
+          <div class="ch__impact"><span class="ch__impact-k">Impact</span><ul class="ch__stats" aria-label="Chapter 3 impact">
+            <li><b>1st</b> Kraken distributor meter-to-cash implementation</li>
+            <li><b>2</b> workstreams: service orders and B2B, then reporting</li>
+          </ul></div>
+          <a class="ch__link" href="https://esdnews.com.au/essential-energy-to-deploy-krakens-dnsp-os-in-australia/" target="_blank" rel="noopener">Read the project story<span class="vh"> (opens in a new tab)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </article>
+
+      <article class="ch ch--cool" id="ch-4" aria-labelledby="ch-4-title">
+        <div class="ch__display" aria-hidden="true"><span class="ch__num">04</span><span class="ch__key">Learning to sell value</span></div>
+        <div class="gal" role="group" aria-label="Photos from chapter 4">
+        <div class="gal__stage"><div class="gal__track">
+          <figure class="gal__slide is-on"><img class="gal__bg" src="img/ch4-lead-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" src="img/ch4-lead-m.webp" width="760" height="570" alt="A selfie with a group of colleagues in a bright room with tall windows and trees outside" loading="lazy" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch4-stage-b.webp" width="570" height="760" alt="" decoding="async"><img class="gal__img" data-src="img/ch4-stage-m.webp" width="570" height="760" alt="Speakers on stage at an SAP Meet the Leaders session" decoding="async"></figure>
+          <figure class="gal__slide"><img class="gal__bg" data-src="img/ch4-badge-b.webp" width="570" height="760" alt="" decoding="async"><img class="gal__img" data-src="img/ch4-badge-m.webp" width="570" height="760" alt="An SAP Next Gen Google Day visitor badge held up outside a Google office" decoding="async"></figure>
+        </div></div>
+        <div class="gal__thumbs" hidden>
+          <button class="gal__thumb is-on" type="button" aria-label="Show photo 1 of 3" aria-pressed="true"><img src="img/ch4-lead-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 2 of 3" aria-pressed="false"><img src="img/ch4-stage-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+          <button class="gal__thumb" type="button" aria-label="Show photo 3 of 3" aria-pressed="false"><img src="img/ch4-badge-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
+        </div>
+      </div>
+        <div class="ch__body">
+          <p class="ch__meta">SAP · Customer Success Manager · 03/2026 – present</p>
+          <h3 class="ch__title" id="ch-4-title"><span class="vh">Chapter 4. </span>At SAP: learning how enterprise software is sold</h3>
+          <p class="ch__line">“After three and a half years in delivery, I wanted to learn how great software is positioned and sold. SAP gave me a world-class education in exactly that.”</p>
+          <ul class="ch__points">
+            <li><strong>A world-class education.</strong> Recruited into SAP’s global Academy for Customer Success: ten months of value realisation, executive engagement and enterprise software selling, including training in San Ramon, California.</li>
+            <li><strong>Customer outcomes first, features second.</strong> Built executive success plans and ran value realisation reviews with customers across APAC.</li>
+            <li><strong>Recognised early.</strong> CSM of the Month (APAC) within my first months.</li>
+            <li><strong>Influence without authority.</strong> Led AI adoption across the 60+ person ANZ practice, bringing colleagues and leaders with me and building tools adopted across APAC. It’s the heart of pre-sales: show what’s possible, then move people to act.</li>
+          </ul>
+          <div class="ch__impact"><span class="ch__impact-k">Impact</span><ul class="ch__stats" aria-label="Chapter 4 impact">
+            <li><b>10-month</b> global Academy</li>
+            <li><b>60+</b> person practice taken on the AI journey</li>
+          </ul></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3 · Customer value -->
+  <section class="scene value" id="value" aria-labelledby="value-title">
+    <svg class="current" aria-hidden="true" focusable="false"></svg>
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Customer value</p>
+      <h2 class="section-title" id="value-title">Outcomes for the utilities</h2>
+      <p class="section-sub section-sub--wide">Results for customers on the programmes I was part of.</p>
+    </div>
+    <div class="value__grid">
+      <div class="value__col">
+        <div class="value__brand"><img class="value__logo value__logo--origin" src="img/logo-origin.svg" width="104" height="128" alt=""><div><h3 class="vh">Origin Energy</h3><p class="value__meta">Retail · Kraken Customer</p></div></div>
+        <p class="figs__group">Onshore · post-go-live stabilisation</p>
+        <ul class="figs">
+          <li class="fig">
+            <span class="fig__num" aria-hidden="true" data-to="80" data-pre="−" data-suf="%">−80%</span>
+            <span class="vh">−80%</span>
+            <span class="fig__label">customer wait times</span>
+          </li>
+          <li class="fig">
+            <span class="fig__num" aria-hidden="true" data-to="25" data-pre="+" data-suf="%">+25%</span>
+            <span class="vh">+25%</span>
+            <span class="fig__label">CSAT</span>
+          </li>
+        </ul>
+        <p class="figs__group">Offshore · Manila scale-up</p>
+        <ul class="figs">
+          <li class="fig">
+            <span class="fig__num" aria-hidden="true" data-to="300" data-pre="" data-suf="+">300+</span>
+            <span class="vh">300+</span>
+            <span class="fig__label">FTE ramped up on Kraken</span>
+            <span class="fig__ctx">contractual KPIs met</span>
+          </li>
+          <li class="fig">
+            <span class="fig__num" aria-hidden="true" data-to="30" data-pre="−" data-suf="%">−30%</span>
+            <span class="vh">−30%</span>
+            <span class="fig__label">after-call work</span>
+            <span class="fig__ctx">with generative AI</span>
+          </li>
+          <li class="fig">
+            <span class="fig__num" aria-hidden="true" data-to="50" data-pre="" data-suf="%">50%</span>
+            <span class="vh">50%</span>
+            <span class="fig__label">faster agent onboarding</span>
+            <span class="fig__ctx">with generative AI</span>
+          </li>
+        </ul>
+      </div>
+      <div class="value__col value__col--amber">
+        <div class="value__brand"><img class="value__logo value__logo--essential" src="img/logo-essential.png" width="324" height="114" alt=""><div><h3 class="vh">Essential Energy</h3><p class="value__meta">Distribution · Kraken Distribution</p></div></div>
+        <ul class="wins">
+          <li><b>A global first</b><span>Kraken’s first distributor meter-to-cash implementation, anywhere.</span></li>
+          <li><b>A product built from zero</b><span>The service orders product, designed with no existing playbook.</span></li>
+          <li><b>A foundation for what follows</b><span>The product, and the lessons learnt building it, underpin the Kraken distribution implementations that follow.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · What I'd bring -->
+  <section class="scene bring" id="bring" aria-labelledby="bring-title">
+    <svg class="current" aria-hidden="true" focusable="false"></svg>
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">For Kraken Tech APAC</p>
+      <h2 class="section-title" id="bring-title">What I’d bring</h2>
+      <p class="section-sub">Mapped to what a Kraken Solution Consultant owns, across Kraken Customer and Kraken Distribution.</p>
+    </div>
+    <ol class="bring__list">
+      <li class="bring__item">
+        <p class="bring__k">Deep product expertise</p>
+        <h3 class="bring__lead">I already speak Kraken.</h3>
+        <p>Energy specialist, team lead, trainer, and part of the inaugural Kraken Distribution team. I know the platform from the inside, on both the retail and the network side.</p>
+      </li>
+      <li class="bring__item">
+        <p class="bring__k">Client needs assessment</p>
+        <h3 class="bring__lead">I’ve sat in your customers’ seats.</h3>
+        <p>I can map a utility’s challenges to Kraken because I lived them: first as one of their people, then leading 20 of them.</p>
+      </li>
+      <li class="bring__item">
+        <p class="bring__k">Product demonstrations</p>
+        <h3 class="bring__lead">I make the complex feel simple.</h3>
+        <p>In Manila I taught Kraken to people who had never seen it, from payments to life support registrations. That was a demo every single day.</p>
+      </li>
+      <li class="bring__item">
+        <p class="bring__k">Technical queries and tenders</p>
+        <h3 class="bring__lead">I know what it takes to deliver.</h3>
+        <p>I’ve taken functional and technical requirements through to release on Kraken’s first distribution build. I can answer the hard questions credibly, and I won’t promise what can’t be delivered.</p>
+      </li>
+      <li class="bring__item">
+        <p class="bring__k">Sales support</p>
+        <h3 class="bring__lead">I sell outcomes, not features.</h3>
+        <p>SAP trained me to anchor every conversation on measurable value. In pre-sales, that means speaking to what matters to each person in the room, from the operations lead to the architect to the executive signing off.</p>
+      </li>
+      <li class="bring__item">
+        <p class="bring__k">AI and the product roadmap</p>
+        <h3 class="bring__lead">I bring the AI conversation.</h3>
+        <p>I’ve put AI to work in a utility contact centre and led AI adoption across a 60+ person practice. I’ll help utilities see what Kraken and AI can do next.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 5 · Close -->
+  <section class="scene close" id="close" aria-labelledby="close-title">
+    <svg class="current" aria-hidden="true" focusable="false"></svg>
+    <p class="eyebrow close__eyebrow">The next chapter</p>
+    <h2 class="close__line" id="close-title">Ready to help utilities across APAC see what Kraken can do.</h2>
+    <p class="close__sub">I’ve used Kraken on the floor, scaled it offshore and built it from the ground up. Few people can show a utility Kraken from every side. <strong>I can.</strong></p>
+  </section>
+</main>
+
+<footer class="contact" id="contact" aria-labelledby="contact-title">
+  <h2 class="vh" id="contact-title">Contact</h2>
+  <div class="contact__grid">
+    <div class="contact__id">
+      <div class="contact__photo"><img src="img/william-240.webp" srcset="img/william-240.webp 240w, img/william-480.webp 480w" sizes="160px" width="240" height="240" alt="Portrait of William Fitz-Gerald Matthew" loading="lazy" decoding="async"></div>
+      <div>
+        <p class="contact__name">William Fitz-Gerald Matthew</p>
+        <p class="contact__place">Melbourne, Australia</p>
+      </div>
+    </div>
+    <ul class="contact__list">
+      <li><span class="contact__k">Phone</span><a class="contact__v" href="tel:+61422812455">+61 422 812 455</a></li>
+      <li class="contact__email-row"><span class="contact__k">Email</span><span class="contact__v contact__email" id="email">williammatthew_@outlook.com</span><button class="pill copy" type="button" data-copy="williammatthew_@outlook.com" aria-label="Copy email address" hidden><span class="copy__label">Copy</span></button></li>
+      <li><span class="contact__k">LinkedIn</span><a class="contact__v" href="https://www.linkedin.com/in/williammatthew" rel="me noopener" target="_blank">linkedin.com/in/williammatthew<span class="vh"> (opens in a new tab)</span></a></li>
+    </ul>
+  </div>
+  <p class="status" id="copy-status" role="status" aria-live="polite"></p>
+  <div class="clocks" hidden>
+    <div class="clock"><span class="clock__city">London</span><span class="clock__time" data-tz="Europe/London">--:--</span><span class="clock__day" data-tz-day="Europe/London"></span></div>
+    <div class="clock"><span class="clock__city">Melbourne</span><span class="clock__time" data-tz="Australia/Melbourne">--:--</span><span class="clock__day" data-tz-day="Australia/Melbourne"></span></div>
+  </div>
+</footer>
+
+<dialog class="lightbox" aria-label="Photo viewer">
+  <p class="lightbox__count" aria-live="polite"></p>
+  <figure class="lightbox__fig"><img class="lightbox__img" alt="" decoding="async"><figcaption class="lightbox__cap"></figcaption></figure>
+  <button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  <button class="lightbox__btn lightbox__close" type="button" aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const root = document.documentElement;
+
+  /* ---------- Copy email (works without the animation libraries) ---------- */
+  (() => {
+    const btn = $('.copy'), status = $('#copy-status'), label = $('.copy__label');
+    if (!btn) return;
+    btn.hidden = false;
+    let t = 0;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      let ok = false;
+      try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
+        const r = document.createRange(); r.selectNodeContents($('#email'));
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      }
+      label.textContent = ok ? 'Copied' : 'Selected';
+      status.textContent = ok ? 'Email address copied.' : 'Email address selected. Press Command or Control and C to copy.';
+      clearTimeout(t);
+      t = setTimeout(() => { label.textContent = 'Copy'; status.textContent = ''; }, 2600);
+    });
+  })();
+
+  /* ---------- Chapter galleries: one large photo, auto-advancing, with thumbnails ---------- */
+  const galleries = $$('.gal').map(g => {
+    const slides = $$('.gal__slide', g), thumbs = $$('.gal__thumb', g);
+    g.classList.add('gal--js');
+    const api = { g, slides, cur: 0 };
+    // later photos load only when they're about to be shown
+    const load = sl => { if (sl) $$('img[data-src]', sl).forEach(im => { im.src = im.dataset.src; im.removeAttribute('data-src'); }); };
+    api.load = load;
+    api.go = i => {
+      api.cur = (i + slides.length) % slides.length;
+      load(slides[api.cur]); load(slides[(api.cur + 1) % slides.length]);
+      slides.forEach((sl, k) => sl.classList.toggle('is-on', k === api.cur));
+      thumbs.forEach((t, k) => { t.classList.toggle('is-on', k === api.cur); t.setAttribute('aria-pressed', String(k === api.cur)); });
+    };
+    if (slides.length > 1) {
+      $('.gal__thumbs', g).hidden = false;
+      thumbs.forEach((t, k) => t.addEventListener('click', () => api.go(k)));
+      // the progress bar under the active thumbnail is the timer; hovering, focus or leaving the screen pauses it
+      g.addEventListener('animationend', e => {
+        if (e.animationName === 'galprog' && e.target.classList.contains('is-on') && !matchMedia('(prefers-reduced-motion: reduce)').matches) api.go(api.cur + 1);
+      });
+      if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => { g.classList.toggle('is-idle', !en.isIntersecting); if (en.isIntersecting) load(slides[1]); }).observe(g);
+    }
+    return api;
+  });
+
+  /* ---------- Photo viewer ---------- */
+  (() => {
+    const dlg = $('.lightbox');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const img = $('.lightbox__img', dlg), cap = $('.lightbox__cap', dlg), count = $('.lightbox__count', dlg);
+    const prev = $('.lightbox__prev', dlg), next = $('.lightbox__next', dlg);
+    const icon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>';
+    let set = [], idx = 0, opener = null;
+    const show = i => {
+      idx = (i + set.length) % set.length;
+      const it = set[idx];
+      img.src = it.src;
+      cap.replaceChildren();
+      const b = document.createElement('b'); b.textContent = it.label;
+      cap.append(b, document.createTextNode(it.alt));
+      count.textContent = set.length > 1 ? 'Photo ' + (idx + 1) + ' of ' + set.length : '';
+      prev.hidden = next.hidden = set.length < 2;
+    };
+    galleries.forEach(gal => {
+      const ch = gal.g.closest('.ch');
+      const label = 'Chapter ' + Number($('.ch__num', ch).textContent) + ' · ' + $('.ch__key', ch).textContent;
+      const items = gal.slides.map(sl => { const m = $('.gal__img', sl); return { src: (m.getAttribute('src') || m.dataset.src).replace(/-m\.webp$/, '-full.webp'), alt: m.alt }; }).map(x => ({ ...x, label }));
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'gal__open'; b.innerHTML = icon;
+      b.setAttribute('aria-label', 'Enlarge photos from chapter ' + Number($('.ch__num', ch).textContent));
+      b.addEventListener('click', () => {
+        set = items; opener = b; show(gal.cur);
+        dlg.showModal(); root.classList.add('lb-open');
+        if (window.__storyLenis) window.__storyLenis.stop();
+      });
+      $('.gal__stage', gal.g).append(b);
+    });
+    prev.addEventListener('click', () => show(idx - 1));
+    next.addEventListener('click', () => show(idx + 1));
+    $('.lightbox__close', dlg).addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft' && set.length > 1) show(idx - 1);
+      if (e.key === 'ArrowRight' && set.length > 1) show(idx + 1);
+    });
+    dlg.addEventListener('close', () => {
+      root.classList.remove('lb-open');
+      if (window.__storyLenis) window.__storyLenis.start();
+      if (opener) opener.focus({ preventScroll: true });
+    });
+  })();
+
+  /* ---------- Scroll prompt: cycle through every side ---------- */
+  (() => {
+    const words = $$('.cue-word');
+    if (!words.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    root.classList.add('cue-on');
+    let i = 0;
+    const timer = setInterval(() => {
+      if (root.classList.contains('has-scrolled')) { clearInterval(timer); return; }
+      const cur = words[i]; i = (i + 1) % words.length; const nx = words[i];
+      cur.classList.remove('is-on'); cur.classList.add('is-out');
+      nx.classList.add('is-on');
+      setTimeout(() => cur.classList.remove('is-out'), 650);
+    }, 1800);
+  })();
+
+  /* ---------- London and Melbourne clocks ---------- */
+  (() => {
+    const wrap = $('.clocks');
+    if (!wrap || !window.Intl) return;
+    wrap.hidden = false;
+    const tick = () => {
+      const d = new Date();
+      $$('[data-tz]', wrap).forEach(e => { e.textContent = new Intl.DateTimeFormat('en-AU', { timeZone: e.dataset.tz, hour: 'numeric', minute: '2-digit', hour12: true }).format(d); });
+      $$('[data-tz-day]', wrap).forEach(e => { e.textContent = new Intl.DateTimeFormat('en-AU', { timeZone: e.dataset.tzDay, weekday: 'short' }).format(d); });
+    };
+    tick(); setInterval(tick, 15000);
+  })();
+
+  /* ---------- Scroll cue disappears on first scroll ---------- */
+  const onFirstScroll = () => {
+    if (window.scrollY > 4) { root.classList.add('has-scrolled'); removeEventListener('scroll', onFirstScroll); }
+  };
+  addEventListener('scroll', onFirstScroll, { passive: true });
+
+  if (!window.gsap || !window.ScrollTrigger) return; // content is already complete and readable
+
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true, autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load' });
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  const mqReduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const isTouch = matchMedia('(hover: none) and (pointer: coarse)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const state = { depth: 0 };
+  let ctx = null, lenis = null, chTl = null, built = false;
+  let introAt = -1;
+  let lastW = innerWidth, lastH = innerHeight;
+
+  const P = (x, y) => x.toFixed(1) + ' ' + y.toFixed(1);
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+  const smooth = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+  const svgEl = (tag, attrs = {}) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
+  const box = (el, ref) => {
+    const a = el.getBoundingClientRect(), b = ref.getBoundingClientRect();
+    return { x: a.left - b.left, y: a.top - b.top, w: a.width, h: a.height, r: a.right - b.left, b: a.bottom - b.top };
+  };
+  const laneX = () => $('.lane-probe').getBoundingClientRect().left;
+  const CLIP_OFF = 'inset(100% 0% 0% 0% round 14px)', CLIP_ON = 'inset(0% 0% 0% 0% round 14px)';
+
+  /* ---------- Smooth scrolling (desktop pointers only) ---------- */
+  function lenisRaf(t) { if (lenis) lenis.raf(t * 1000); }
+  function startLenis() {
+    if (lenis || mqReduce.matches || isTouch || !window.Lenis) return;
+    lenis = new Lenis({ lerp: 0.11, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    window.__storyLenis = lenis;
+    gsap.ticker.add(lenisRaf);
+    gsap.ticker.lagSmoothing(0);
+  }
+  function stopLenis() {
+    if (!lenis) return;
+    gsap.ticker.remove(lenisRaf); lenis.destroy(); lenis = null; window.__storyLenis = null;
+  }
+  function scrollToY(y) {
+    if (lenis) lenis.scrollTo(y, { duration: 1.2, easing: t => 1 - Math.pow(1 - t, 3) });
+    else window.scrollTo({ top: y, behavior: mqReduce.matches ? 'auto' : 'smooth' });
+  }
+
+  /* ---------- The current: one strand of light ---------- */
+  function lengthAtY(path, L, y) {
+    let lo = 0, hi = L;
+    for (let i = 0; i < 22; i++) { const mid = (lo + hi) / 2; if (path.getPointAtLength(mid).y < y) lo = mid; else hi = mid; }
+    return (lo + hi) / 2;
+  }
+  function svgNode(svg, x, y, cls = '', r = 4.5) {
+    const g = svgEl('g', { class: 'node' + (cls ? ' ' + cls : '') });
+    g.append(svgEl('circle', { class: 'node__ring', cx: x, cy: y, r: r + 2 }), svgEl('circle', { class: 'node__dot', cx: x, cy: y, r }));
+    svg.append(g);
+    return g;
+  }
+  function strand(svg, d, o = {}) {
+    const g = svgEl('g', { class: 'strand' });
+    const glow = svgEl('path', { class: 'strand__glow', d });
+    const line = svgEl('path', { class: 'strand__line', d });
+    if (o.stroke) { glow.style.stroke = o.stroke; line.style.stroke = o.stroke; }
+    g.append(glow, line);
+    let spark = null;
+    if (!o.noSpark) {
+      spark = svgEl('g', { class: 'spark' });
+      spark.append(svgEl('circle', { class: 'spark__halo', r: 13 }), svgEl('circle', { class: 'spark__core', r: 2.2 }));
+      g.append(spark);
+    }
+    svg.append(g);
+    const L = Math.max(1, line.getTotalLength());
+    const dash = L.toFixed(1) + ' ' + (L + 4).toFixed(1);
+    glow.style.strokeDasharray = dash; line.style.strokeDasharray = dash;
+    const s = {
+      L, line, svg, nodes: [], _p: -1, onDone: null, done: false,
+      paint(n) { const lit = this._p >= n.at - 0.002; if (lit !== n.lit) { n.lit = lit; n.el.classList.toggle('is-lit', lit); } },
+      addNode(el, y) { const n = { el, at: y == null ? 1 : lengthAtY(line, L, y) / L, lit: null }; this.nodes.push(n); this.paint(n); return n; },
+      nodeAtY(y, cls) {
+        const len = lengthAtY(line, L, y), pt = line.getPointAtLength(len);
+        const n = { el: svgNode(svg, pt.x, pt.y, cls), at: len / L, lit: null };
+        this.nodes.push(n); this.paint(n); return n;
+      }
+    };
+    Object.defineProperty(s, 'p', {
+      get() { return this._p; },
+      set(v) {
+        v = clamp01(v);
+        if (v === this._p) return;
+        this._p = v;
+        const off = (L * (1 - v)).toFixed(2);
+        line.style.strokeDashoffset = off; glow.style.strokeDashoffset = off;
+        if (spark) {
+          if (v > 0.003 && v < 0.997) {
+            const pt = line.getPointAtLength(L * v);
+            spark.setAttribute('transform', 'translate(' + P(pt.x, pt.y) + ')');
+            spark.style.opacity = 1;
+          } else spark.style.opacity = 0;
+        }
+        for (const n of this.nodes) this.paint(n);
+        if (v >= 0.999 && !this.done && this.onDone) {
+          // ScrollTrigger briefly renders timelines to their end while measuring; only act if it sticks
+          this.done = true;
+          requestAnimationFrame(() => { if (this._p >= 0.999) this.onDone(); else this.done = false; });
+        }
+      }
+    });
+    s.p = 0;
+    return s;
+  }
+  function prepSvg(sec) {
+    const svg = $('.current', sec);
+    svg.replaceChildren();
+    const W = sec.offsetWidth, H = sec.offsetHeight;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    return { svg, W, H };
+  }
+  function vGradient(svg, id, H, stops) {
+    const defs = svgEl('defs');
+    const lg = svgEl('linearGradient', { id, gradientUnits: 'userSpaceOnUse', x1: 0, y1: 0, x2: 0, y2: H });
+    let last = 0;
+    stops.forEach(([o, c]) => { last = Math.max(last, clamp01(o)); lg.append(svgEl('stop', { offset: last.toFixed(4), style: 'stop-color:var(' + c + ')' })); });
+    defs.append(lg); svg.prepend(defs);
+    return 'url(#' + id + ')';
+  }
+  function lanePath(x, H, amp) {
+    if (!amp) return 'M' + P(x, 0) + ' L' + P(x, H);
+    const n = Math.max(1, Math.round(H / 460)), seg = H / n;
+    let d = 'M' + P(x, 0);
+    for (let i = 0; i < n; i++) {
+      const y0 = i * seg, a = amp * (i % 2 ? -1 : 1);
+      d += ' C' + P(x + a, y0 + seg * 0.38) + ' ' + P(x + a, y0 + seg * 0.62) + ' ' + P(x, y0 + seg);
+    }
+    return d;
+  }
+
+  /* ---------- Results count-up (once) ---------- */
+  function resetFigures() {
+    $$('.fig').forEach(f => {
+      const num = $('.fig__num', f);
+      num.textContent = num.dataset.pre + num.dataset.to + num.dataset.suf;
+      [num, ...$$('.fig__label, .fig__ctx', f)].forEach(e => e.removeAttribute('style'));
+    });
+  }
+  function hideUncounted() {
+    $$('.fig').forEach(f => {
+      if (f.dataset.counted) return;
+      gsap.set($('.fig__num', f), { opacity: 0 });
+      gsap.set($$('.fig__label, .fig__ctx', f), { opacity: 0, y: 10 });
+    });
+  }
+  function countUp(f, delay = 0) {
+    if (f.dataset.counted) return;
+    f.dataset.counted = '1';
+    const num = $('.fig__num', f), to = +num.dataset.to, pre = num.dataset.pre, suf = num.dataset.suf;
+    const labels = $$('.fig__label, .fig__ctx', f), o = { v: 0 };
+    const run = fn => (ctx ? ctx.add(fn) : fn());
+    run(() => {
+      gsap.set(num, { opacity: 1, delay });
+      num.textContent = pre + '0' + suf;
+      gsap.to(o, {
+        v: to, duration: 1.3, ease: 'power3.out', delay,
+        onUpdate: () => { num.textContent = pre + Math.round(o.v) + suf; },
+        onComplete: () => gsap.to(labels, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' })
+      });
+    });
+  }
+
+  /* ---------- Layout decisions ---------- */
+  function chaptersFit() {
+    const list = $('.ch-list'), cs = getComputedStyle(list);
+    const avail = list.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const tallest = Math.max(...$$('.ch').map(a => a.offsetHeight));
+    const headBottom = $('.chapters__head').getBoundingClientRect().bottom - $('#chapters').getBoundingClientRect().top;
+    return tallest <= avail - 8 && headBottom < parseFloat(cs.paddingTop) + 4;
+  }
+  /* ---------- Hero tentacles: tapered, glowing, each ending in a company badge ---------- */
+  const LOGOS = [
+    { src: 'img/logo-origin.svg', r: 104 / 128, s: 1.5 },
+    { src: 'img/logo-accenture.svg', r: 163.4 / 43, s: 1 },
+    { src: 'img/logo-essential-colour.png', r: 165 / 60, s: 1.2 },
+    { src: 'img/logo-kraken.svg', r: 529.3 / 122.1, s: 0.95 }
+  ];
+  let tentSeq = 0;
+  function buildTentacles(hero, W, H, contentR, textBottom) {
+    const old = $('.tentacles', hero); if (old) old.remove();
+    const wrap = document.createElement('div');
+    wrap.className = 'tentacles'; wrap.setAttribute('aria-hidden', 'true');
+    const big = W >= 768;
+    const lh0 = big ? Math.min(30, Math.max(22, W * 0.019)) : 16, bp = big ? 11 : 7;
+    const padR = parseFloat(getComputedStyle(hero).paddingRight) || 0;
+    const x0 = big ? Math.max(contentR + 90, W * 0.56) : W * 0.2, x1 = big ? W - padR - 90 : W * 0.84;
+    let tips = [0.6, 0.3, 0.54, 0.22];
+    if (!big) { // phones: badges live in the band below the intro text
+      const yMin = Math.min(H - 40, textBottom + 30 + lh0 * 2.2), band = H - yMin;
+      tips = [0.6, 0.06, 0.55, 0.1].map(f => (yMin + band * f) / H);
+    }
+    const baseW = big ? 34 : 20;
+    LOGOS.forEach((logo, k) => {
+      const f = LOGOS.length > 1 ? k / (LOGOS.length - 1) : 0;
+      const lh = Math.round(lh0 * logo.s), bw = lh * logo.r + bp * 3.2;
+      const tx = Math.min(x0 + (x1 - x0) * f, big ? W - padR - bw / 2 - 8 : W - bw / 2 - 44), ty = H * tips[k];
+      const bx = tx + (big ? W * (k % 2 ? 0.035 : -0.03) : (k % 2 ? 14 : -10)), by = H + 30;
+      const dir = k % 2 ? 1 : -1, sway = (big ? W * 0.03 : 12) * dir;
+      const N = 36, pts = [];
+      for (let i = 0; i <= N; i++) {
+        const t = i / N, e = t * t * (3 - 2 * t);
+        pts.push({ x: bx + (tx - bx) * e + sway * Math.sin(t * Math.PI), y: by + (ty - by) * t, hw: (baseW / 2) * (1 - t) + 2.2 * t });
+      }
+      // outline: offset the centre line by a tapering half-width
+      const Ls = [], Rs = [];
+      pts.forEach((p, i) => {
+        const a = pts[Math.max(0, i - 1)], b = pts[Math.min(N, i + 1)];
+        let nx = -(b.y - a.y), ny = b.x - a.x; const len = Math.hypot(nx, ny) || 1; nx /= len; ny /= len;
+        Ls.push([p.x + nx * p.hw, p.y + ny * p.hw]); Rs.push([p.x - nx * p.hw, p.y - ny * p.hw]);
+      });
+      const all = Ls.concat(Rs), xs = all.map(q => q[0]), ys = all.map(q => q[1]);
+      const left = Math.min(...xs) - 12, top = Math.min(...ys) - 12, w = Math.max(...xs) - left + 12, h = Math.max(...ys) - top + 12;
+      const loc = q => (q[0] - left).toFixed(1) + ' ' + (q[1] - top).toFixed(1);
+      const d = 'M' + Ls.map(loc).join(' L') + ' L' + Rs.slice().reverse().map(loc).join(' L') + ' Z';
+      const spine = 'M' + pts.map(p => loc([p.x, p.y])).join(' L');
+      const id = 'tg' + (++tentSeq);
+      let suckers = '';
+      for (let i = 8; i <= 28; i += 3) {
+        const p = pts[i], q = pts[i + 1]; const nx = -(q.y - p.y), ny = q.x - p.x, len = Math.hypot(nx, ny) || 1;
+        const cx = p.x - (nx / len) * p.hw * 0.45 * dir, cy = p.y - (ny / len) * p.hw * 0.45 * dir;
+        suckers += '<circle cx="' + (cx - left).toFixed(1) + '" cy="' + (cy - top).toFixed(1) + '" r="' + (p.hw * 0.32).toFixed(1) + '" style="fill:var(--line)" fill-opacity=".28"/>';
+      }
+      const el = document.createElement('div');
+      el.className = 'tent';
+      el.style.cssText = 'left:' + left.toFixed(1) + 'px;top:' + top.toFixed(1) + 'px;width:' + w.toFixed(1) + 'px;height:' + h.toFixed(1) + 'px;--in:' + (0.55 + k * 0.14) + 's';
+      el.innerHTML = '<div class="tent__sway" style="--ox:' + (bx - left).toFixed(1) + 'px;--oy:' + (by - top).toFixed(1) + 'px;--d:' + (6.5 + k * 0.9) + 's;--delay:' + (-k * 1.7) + 's">'
+        + '<svg width="' + w.toFixed(0) + '" height="' + h.toFixed(0) + '" viewBox="0 0 ' + w.toFixed(1) + ' ' + h.toFixed(1) + '"><defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1">'
+        + '<stop offset="0" style="stop-color:var(--line);stop-opacity:.6"/><stop offset=".55" style="stop-color:var(--line);stop-opacity:.22"/><stop offset="1" style="stop-color:var(--line);stop-opacity:0"/></linearGradient></defs>'
+        + '<path d="' + d + '" fill="url(#' + id + ')"/>' + suckers
+        + '<path d="' + spine + '" fill="none" style="stroke:var(--line)" stroke-width="1.2" stroke-opacity=".7"/></svg>'
+        + '<div class="tent__badge" style="left:' + (tx - left).toFixed(1) + 'px;top:' + (ty - top + 4).toFixed(1) + 'px;--lh:' + lh + 'px;--bp:' + bp + 'px;--bd:' + (4.2 + k * 0.5) + 's"><img src="' + logo.src + '" alt="" width="' + Math.round(lh * logo.r) + '" height="' + lh + '" decoding="async"></div></div>';
+      wrap.append(el);
+    });
+    hero.prepend(wrap);
+    return { el: wrap };
+  }
+
+  /* ---------- Build every scene ---------- */
+  function build() {
+    const R = mqReduce.matches;
+    const VW = innerWidth, VH = innerHeight;
+    root.classList.remove('hero-pin', 'ch-stage');
+    $$('.ch').forEach(a => a.classList.remove('is-active'));
+    $$('.timeline__row').forEach(r => r.classList.remove('is-current'));
+    $$('.gal button').forEach(b => { b.tabIndex = 0; });
+    $$('.rail a').forEach(a => { a.removeAttribute('aria-current'); a.classList.remove('is-lit'); });
+    resetFigures();
+    if (!R) {
+      if (VW >= 768 && VH >= 520) root.classList.add('hero-pin');
+      if (VW >= 768) { root.classList.add('ch-stage'); if (!chaptersFit()) root.classList.remove('ch-stage'); }
+    }
+    const M = { heroPin: root.classList.contains('hero-pin'), chStage: root.classList.contains('ch-stage') };
+    const lane = laneX();
+    const amp = VW >= 768 ? Math.min(16, lane * 0.3) : 0;
+    chTl = null;
+
+    ctx = gsap.context(() => {
+      /* Depth: the water darkens as you descend */
+      if (!R) {
+        gsap.timeline({ scrollTrigger: { start: 0, end: 'max', scrub: 0.3, onUpdate: s => { state.depth = s.progress; } } })
+          .fromTo('.depth__surface', { opacity: 1 }, { opacity: 0, ease: 'none' }, 0)
+          .fromTo('.depth__abyss', { opacity: 0 }, { opacity: 1, ease: 'none' }, 0);
+      }
+
+      /* Shared reveal for section headings */
+      $$('[data-reveal]').forEach(h => {
+        if (R) return;
+        if (M.chStage && h.closest('#chapters')) return;
+        gsap.fromTo(h.children, { opacity: 0, y: 28 }, { opacity: 1, y: 0, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: h, start: 'top 90%', end: 'top 62%', scrub: 0.5 } });
+      });
+
+      /* 1 · Hero */
+      {
+        const hero = $('#hero'), inner = $('.hero__inner', hero);
+        const { svg, W, H } = prepSvg(hero);
+        // Tentacles rising from the deep, each carrying a company I've worked with on Kraken
+        let contentR = 0;
+        $$('.mask > span, .hero__sub', hero).forEach(e => { contentR = Math.max(contentR, box(e, hero).r); });
+        const tentLayer = buildTentacles(hero, W, H, contentR, box($('.scroll-cue', hero), hero).b);
+        // the current: a calm spine down the lane, lit beside the eyebrow
+        const top = box($('.hero__eyebrow', hero), hero).y + 8;
+        const O = [lane, top];
+        const d1 = 'M' + P(lane, top) + ' L' + P(lane, H * 0.6);
+        const d2 = 'M' + P(lane, H * 0.6) + ' L' + P(lane, H);
+        const s1 = strand(svg, d1), s2 = strand(svg, d2);
+        const orb = svgEl('g', { transform: 'translate(' + P(O[0], O[1]) + ')' });
+        const orbIn = svgEl('g', { class: 'orb' });
+        const breath = svgEl('g', { class: 'orb__breath' });
+        breath.append(svgEl('circle', { class: 'orb__halo', r: 30 }));
+        orbIn.append(breath, svgEl('circle', { class: 'orb__core', r: 3.5 }));
+        orb.append(orbIn); svg.append(orb);
+
+        if (R) { s1.p = 1; s2.p = 1; }
+        else {
+          const now = performance.now() / 1000;
+          if (introAt < 0) introAt = Math.max(now + 0.05, 0.95);
+          const wait = introAt - now;
+          if (wait > -0.7) {
+            const from = clamp01(-wait / 0.7);
+            gsap.fromTo(orbIn, { opacity: 0, scale: 0.3, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out', delay: Math.max(0, wait - 0.15) });
+            gsap.fromTo(s1, { p: from }, { p: 1, duration: 0.7 * (1 - from), ease: 'power2.inOut', delay: Math.max(0, wait) });
+          } else s1.p = 1;
+
+          if (M.heroPin) {
+            gsap.timeline({
+              defaults: { ease: 'none' },
+              scrollTrigger: {
+                trigger: hero, start: 'top top', end: '+=55%', pin: true, scrub: 0.6, anticipatePin: 1,
+                onToggle: st => { inner.style.willChange = st.isActive ? 'transform, opacity' : ''; }
+              }
+            })
+              .to(inner, { y: -VH * 0.14, scale: 0.84, opacity: 0.12, duration: 1 }, 0)
+              .to(tentLayer.el, { y: VH * 0.2, opacity: 0.25, duration: 1 }, 0)
+              .fromTo(s2, { p: 0 }, { p: 1, duration: 1 }, 0);
+          } else {
+            gsap.to(inner, { y: -VH * 0.1, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.4 } });
+            gsap.to(tentLayer.el, { y: VH * 0.12, opacity: 0.3, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.4 } });
+            gsap.fromTo(s2, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom 80%', scrub: 0.4 } });
+          }
+        }
+      }
+
+      /* 2 · Chapters */
+      {
+        const chs = $('#chapters'), { svg, H } = prepSvg(chs);
+        const arts = $$('.ch', chs);
+        const links = $$('.rail a', chs);
+        const toneA = $('.tone--amber', chs), toneC = $('.tone--cool', chs);
+        if (M.chStage) {
+          const ys = links.map(a => { const b = box(a, chs); return b.y + b.h / 2; });
+          const grad = vGradient(svg, 'g-ch', H, [
+            [0, '--line'], [(ys[1] + ys[2]) / 2 / H, '--line'], [ys[2] / H, '--line-amber'],
+            [(ys[2] + ys[3]) / 2 / H, '--line-amber'], [ys[3] / H, '--line-cool'], [1, '--line-cool']
+          ]);
+          const lead = strand(svg, 'M' + P(lane, 0) + ' L' + P(lane, ys[0]));
+          const main = strand(svg, 'M' + P(lane, ys[0]) + ' L' + P(lane, H), { stroke: grad });
+          lead.addNode(links[0], null);
+          links.slice(1).forEach((a, i) => main.addNode(a, ys[i + 1]));
+          const fr = ys.map(y => (y - ys[0]) / (H - ys[0]));
+
+          const parts = arts.map(a => ({
+            disp: $$('.ch__num, .ch__key', a), items: $$('.ch__meta, .ch__title, .ch__line, .ch__points > li, .ch__impact, .ch__link', a),
+            lead: $('.gal__stage', a), leadImg: $('.gal__track', a), smalls: $$('.gal__thumb', a), photos: $$('.gal__stage, .gal__thumbs', a)
+          }));
+          parts.forEach((pt, i) => {
+            gsap.set(pt.lead, { clipPath: CLIP_OFF }); gsap.set(pt.leadImg, { scale: 1.14 });
+            if (i === 0) return; // chapter 1 arrives with the stage (its blocks, not its children, animate in below)
+            gsap.set(pt.disp, { opacity: 0, y: 44 }); gsap.set(pt.items, { opacity: 0, y: 24 }); gsap.set(pt.smalls, { opacity: 0, y: 50 });
+          });
+          // A chapter's photos: the lead wipes up out of the dark, the smaller frames rise in after it
+          const photosIn = (tl, pt, at, d) => tl
+            .fromTo(pt.lead, { clipPath: CLIP_OFF }, { clipPath: CLIP_ON, duration: d, ease: 'power2.out' }, at)
+            .fromTo(pt.leadImg, { scale: 1.14 }, { scale: 1, duration: d * 1.3, ease: 'power2.out' }, at)
+            .fromTo(pt.smalls, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: d * 0.85, stagger: d * 0.2, ease: 'power2.out' }, at + d * 0.3);
+
+          // As the stage rises into view: the current reaches node 1 and chapter 1 powers on
+          const head = $('.chapters__head', chs);
+          const tlLead = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: chs, start: 'top bottom', end: 'top top', scrub: 0.5 } });
+          tlLead.fromTo(lead, { p: 0 }, { p: 1, duration: 1 }, 0)
+            .fromTo(head.children, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: 'power2.out' }, 0.25)
+            .fromTo($$('.ch__display, .gal, .ch__body', arts[0]), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: 'power2.out' }, 0.45)
+            .fromTo(parts[0].lead, { clipPath: CLIP_OFF }, { clipPath: CLIP_ON, duration: 0.45, ease: 'power2.out' }, 0.55)
+            .fromTo(parts[0].leadImg, { scale: 1.14 }, { scale: 1, duration: 0.45, ease: 'power2.out' }, 0.55);
+
+          const IN = 0.6, HOLD = 1.0, OUT = 0.42, GAP = -0.14; // the next chapter starts arriving as the last one leaves
+          const tl = gsap.timeline({
+            defaults: { ease: 'none', immediateRender: false },
+            scrollTrigger: { trigger: chs, start: 'top top', end: () => '+=' + Math.round(VH * 3.4), pin: true, scrub: 0.7, anticipatePin: 1 }
+          });
+          const switchAt = [0];
+          let t = 0;
+          tl.addLabel('c0', 0);
+          parts.forEach((pt, i) => {
+            if (i > 0) {
+              tl.fromTo(pt.disp, { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: IN, stagger: 0.07, ease: 'power2.out' }, t)
+                .fromTo(pt.items, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: IN * 0.8, stagger: 0.05, ease: 'power2.out' }, t + 0.12);
+              photosIn(tl, pt, t + 0.05, IN);
+              t += IN + 0.12 + pt.items.length * 0.025;
+              tl.addLabel('c' + i, t);
+            }
+            if (i < parts.length - 1) {
+              const o = t + HOLD;
+              tl.fromTo(pt.disp, { opacity: 1, y: 0 }, { opacity: 0, y: -36, duration: OUT, stagger: 0.04, ease: 'power1.in' }, o)
+                .fromTo(pt.items, { opacity: 1, y: 0 }, { opacity: 0, y: -18, duration: OUT * 0.8, stagger: 0.02, ease: 'power1.in' }, o);
+              tl.fromTo(pt.photos, { opacity: 1, y: 0 }, { opacity: 0, y: -28, duration: OUT, stagger: 0.03, ease: 'power1.in' }, o);
+              const next = o + OUT + GAP;
+              tl.fromTo(main, { p: fr[i] }, { p: fr[i + 1], duration: next - o + 0.1, ease: 'power1.inOut' }, o);
+              if (i === 1) tl.fromTo(toneA, { opacity: 0 }, { opacity: 1, duration: 0.9 }, o);
+              if (i === 2) tl.fromTo(toneA, { opacity: 1 }, { opacity: 0, duration: 0.9 }, o).fromTo(toneC, { opacity: 0 }, { opacity: 1, duration: 0.9 }, o);
+              switchAt.push(o + OUT * 0.7);
+              t = next;
+            } else {
+              tl.fromTo(main, { p: fr[i] }, { p: 1, duration: 0.6, ease: 'power1.in' }, t + HOLD * 0.7);
+              tl.to({}, { duration: 0.15 }, t + HOLD * 0.7 + 0.6);
+            }
+          });
+          const eras = $$('.timeline__row', chs);
+          let active = -1;
+          const setActive = i => {
+            if (i === active) return;
+            active = i;
+            arts.forEach((a, k) => a.classList.toggle('is-active', k === i));
+            links.forEach((l, k) => { if (k === i) l.setAttribute('aria-current', 'step'); else l.removeAttribute('aria-current'); });
+            eras.forEach((r, k) => r.classList.toggle('is-current', k === (i === 3 ? 1 : 0)));
+            arts.forEach((a, k) => $$('.gal button', a).forEach(b => { b.tabIndex = k === i ? 0 : -1; }));
+          };
+          tl.eventCallback('onUpdate', () => { const time = tl.time(); let a = 0; switchAt.forEach((s, k) => { if (time >= s) a = k; }); setActive(a); });
+          setActive(0);
+          chTl = tl;
+        } else {
+          const ys = arts.map(a => box($('.ch__display', a), chs).y + 24);
+          const grad = vGradient(svg, 'g-ch', H, [
+            [0, '--line'], [(ys[2] - 60) / H, '--line'], [ys[2] / H, '--line-amber'],
+            [(ys[3] - 60) / H, '--line-amber'], [ys[3] / H, '--line-cool'], [1, '--line-cool']
+          ]);
+          const s = strand(svg, lanePath(lane, H, 0), { stroke: grad });
+          ys.forEach((y, i) => s.nodeAtY(y, i === 2 ? 'node--amber' : i === 3 ? 'node--cool' : ''));
+          if (R) s.p = 1;
+          else {
+            gsap.fromTo(s, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: chs, start: 'top 80%', end: 'bottom 80%', scrub: 0.5 } });
+            arts.forEach(a => {
+              const ph = $('.gal__stage', a);
+              if (ph) {
+                const st = { trigger: ph, start: 'top 94%', end: 'top 58%', scrub: 0.5 };
+                gsap.fromTo(ph, { clipPath: CLIP_OFF }, { clipPath: CLIP_ON, ease: 'power2.out', scrollTrigger: st });
+                gsap.fromTo($('.gal__track', ph), { scale: 1.14 }, { scale: 1, ease: 'power2.out', scrollTrigger: { ...st } });
+              }
+              $$('.ch__num, .ch__key, .gal__thumbs, .ch__meta, .ch__title, .ch__line, .ch__points > li, .ch__impact, .ch__link', a).forEach(it => {
+                gsap.fromTo(it, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'power2.out', scrollTrigger: { trigger: it, start: 'top 94%', end: 'top 74%', scrub: 0.4 } });
+              });
+            });
+          }
+        }
+      }
+
+      /* 3 · Customer value: the current forks to each utility */
+      {
+        const sec = $('#value'), { svg, H } = prepSvg(sec);
+        const cols = $$('.value__col', sec), heads = cols.map(c => box($('.value__brand', c), sec));
+        const figs = $$('.fig', sec), wins = $$('.wins li', sec);
+        const split = heads[1].x > heads[0].x + 60;
+        const forkY = split ? heads[0].y - 64 : 0;
+        const trunk = strand(svg, lanePath(lane, H, 0), { noSpark: true });
+        const branches = heads.map((hb, i) => {
+          const fy = split ? hb.y - 18 : hb.y + hb.h * 0.32, fx = split ? hb.x + 6 : Math.max(lane + 10, hb.x - 12);
+          const sy = split ? forkY : fy - 40;
+          const d = split
+            ? 'M' + P(lane, sy) + ' C' + P(lane + (fx - lane) * 0.55, sy) + ' ' + P(fx, sy + (fy - sy) * 0.2) + ' ' + P(fx, fy)
+            : 'M' + P(lane, sy) + ' C' + P(lane, fy - 12) + ' ' + P(lane + (fx - lane) * 0.3, fy) + ' ' + P(fx, fy);
+          const s = strand(svg, d, i === 1 ? { stroke: 'var(--line-amber)' } : {});
+          s.addNode(svgNode(svg, fx, fy, i === 1 ? 'node--amber' : ''), null);
+          return s;
+        });
+        branches[0].onDone = () => figs.forEach((f, i) => countUp(f, i * 0.14));
+        if (R) { trunk.p = 1; branches.forEach(s => { s.done = true; s.p = 1; }); }
+        else {
+          hideUncounted();
+          gsap.fromTo(trunk, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: sec, start: 'top 80%', end: 'bottom 80%', scrub: 0.5 } });
+          branches.forEach((s, i) => gsap.fromTo(s, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: cols[i], start: split ? 'top 92%' : 'top 82%', end: split ? 'top 62%' : 'top 58%', scrub: 0.5 } }));
+          wins.forEach(w => gsap.fromTo(w, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power1.inOut', scrollTrigger: { trigger: w, start: 'top 88%', end: 'top 64%', scrub: 0.5 } }));
+        }
+      }
+
+      /* 5 · What I'd bring */
+      {
+        const bring = $('#bring'), { svg, H } = prepSvg(bring);
+        const s = strand(svg, lanePath(lane, H, amp));
+        const items = $$('.bring__item', bring);
+        items.forEach(it => s.nodeAtY(box($('.bring__lead', it), bring).y + 20));
+        if (R) s.p = 1;
+        else {
+          gsap.fromTo(s, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: bring, start: 'top 80%', end: 'bottom 80%', scrub: 0.5 } });
+          items.forEach(it => gsap.fromTo(it, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power1.inOut', scrollTrigger: { trigger: it, start: 'top 86%', end: 'top 58%', scrub: 0.5 } }));
+        }
+      }
+
+      /* 6 · Close: the current settles into a horizon */
+      {
+        const close = $('#close'), { svg, W, H } = prepSvg(close);
+        const tb = box($('.close__sub', close), close);
+        const hy = Math.min(H - 24, tb.b + Math.max(48, H * 0.13));
+        const r = VW >= 768 ? 56 : 22;
+        const down = strand(svg, 'M' + P(lane, 0) + ' L' + P(lane, hy - r) + ' Q' + P(lane, hy) + ' ' + P(lane + r, hy) + ' L' + P(W, hy));
+        const words = $$('.close__vis .w', close);
+        const contact = $$('.contact > :not(.vh)');
+        if (R) down.p = 1;
+        else {
+          gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: close, start: 'top 85%', end: 'bottom 75%', scrub: 0.6 } })
+            .fromTo(down, { p: 0 }, { p: 1, duration: 1 }, 0)
+            .fromTo($('.close__eyebrow', close), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 0.1)
+            .fromTo(words, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: 'power2.out' }, 0.2)
+            .fromTo($$('.close__sub', close), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.1, ease: 'power2.out' }, 0.62);
+          gsap.fromTo(contact, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '.contact', start: 'top 96%', end: 'top 74%', scrub: 0.5 } });
+        }
+      }
+    });
+  }
+
+  function rebuild() {
+    const max = Math.max(1, ScrollTrigger.maxScroll(window));
+    const ratio = window.scrollY / max;
+    if (ctx) ctx.revert();
+    build();
+    ScrollTrigger.refresh();
+    const y = Math.round(ratio * ScrollTrigger.maxScroll(window));
+    if (lenis) { lenis.resize(); lenis.scrollTo(y, { immediate: true, force: true }); }
+    else window.scrollTo(0, y);
+    ScrollTrigger.update();
+  }
+
+  /* Split the closing line into words (screen readers get the plain sentence) */
+  (() => {
+    const h = $('.close__line'), text = h.textContent.trim();
+    h.textContent = '';
+    const sr = document.createElement('span'); sr.className = 'vh'; sr.textContent = text;
+    const vis = document.createElement('span'); vis.className = 'close__vis'; vis.setAttribute('aria-hidden', 'true');
+    text.split(' ').forEach((w, i, a) => {
+      const s = document.createElement('span'); s.className = 'w'; s.textContent = w; vis.append(s);
+      if (i < a.length - 1) vis.append(' ');
+    });
+    h.append(sr, vis);
+  })();
+
+  /* Tentacles only move while the hero is on screen */
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => $('#hero').classList.toggle('is-idle', !e.isIntersecting)).observe($('#hero'));
+
+  /* Rail: jump to a chapter inside the pinned stage */
+  $$('.rail a').forEach((a, i) => a.addEventListener('click', e => {
+    if (!chTl || !chTl.scrollTrigger) return;
+    e.preventDefault();
+    scrollToY(chTl.scrollTrigger.labelToScroll('c' + i));
+  }));
+
+  /* ---------- Plankton: one cheap canvas layer ---------- */
+  const plankton = (() => {
+    const cv = $('.plankton'), c = cv && cv.getContext('2d');
+    if (!c) return { start() {}, stop() {}, size() {} };
+    let w = 0, h = 0, dots = [], raf = 0, last = 0, lastY = 0, on = false, color = '120,255,235', alpha = 1;
+    const read = () => { const cs = getComputedStyle(root); color = cs.getPropertyValue('--particle').trim() || color; alpha = parseFloat(cs.getPropertyValue('--particle-alpha')) || 1; };
+    const seed = () => ({ x: Math.random() * w, y: Math.random() * h, r: 0.5 + Math.random() * 1.5, vx: (Math.random() - 0.5) * 0.08, vy: -(0.04 + Math.random() * 0.12), ph: Math.random() * 6.28, sp: 0.5 + Math.random(), a: 0.2 + Math.random() * 0.5 });
+    function size() {
+      const dpr = Math.min(1.5, window.devicePixelRatio || 1);
+      w = innerWidth; h = innerHeight;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = w < 768 ? 46 : 84;
+      while (dots.length < n) dots.push(seed());
+      dots.length = n;
+    }
+    function frame(t) {
+      raf = requestAnimationFrame(frame);
+      const dt = Math.min(48, t - (last || t)); last = t;
+      const k = (dt / 16.67) * (1 - 0.82 * smooth(0.86, 1, state.depth));
+      const sy = window.scrollY, dy = sy - lastY; lastY = sy;
+      const dl = (0.35 + 0.65 * state.depth) * alpha;
+      c.clearRect(0, 0, w, h);
+      c.fillStyle = 'rgb(' + color + ')';
+      for (const p of dots) {
+        p.ph += 0.012 * p.sp * k;
+        p.x += (p.vx + Math.sin(p.ph) * 0.06) * k;
+        p.y += p.vy * k - dy * 0.05 * p.r;
+        if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; } else if (p.y > h + 10) { p.y = -10; p.x = Math.random() * w; }
+        if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+        c.globalAlpha = p.a * dl * (0.6 + 0.4 * Math.sin(p.ph * 1.7));
+        c.beginPath(); c.arc(p.x, p.y, p.r, 0, 6.2832); c.fill();
+      }
+      c.globalAlpha = 1;
+    }
+    function start() { if (on || document.hidden || mqReduce.matches) return; read(); on = true; last = 0; lastY = window.scrollY; cv.style.display = ''; raf = requestAnimationFrame(frame); }
+    function stop() { on = false; cancelAnimationFrame(raf); }
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); });
+    matchMedia('(prefers-color-scheme: light)').addEventListener('change', read);
+    return { start, stop, size, hide() { stop(); c.clearRect(0, 0, w, h); cv.style.display = 'none'; } };
+  })();
+
+  /* ---------- Lifecycle ---------- */
+  function boot() {
+    startLenis();
+    plankton.size();
+    build(); built = true;
+    ScrollTrigger.refresh();
+    if (mqReduce.matches) plankton.hide(); else plankton.start();
+  }
+  let fontTimer = 0;
+  if (document.fonts) {
+    document.fonts.addEventListener('loadingdone', () => {
+      if (!built) return;
+      clearTimeout(fontTimer); fontTimer = setTimeout(rebuild, 120);
+    });
+  }
+  Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 700))]).then(boot);
+
+  let rt = 0;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      const w = innerWidth, h = innerHeight;
+      const wChanged = w !== lastW, hChanged = Math.abs(h - lastH) > (isTouch ? 160 : 40);
+      if (!wChanged && !hChanged) return;
+      lastW = w; lastH = h;
+      plankton.size();
+      if (built) rebuild();
+    }, 180);
+  });
+  mqReduce.addEventListener('change', () => {
+    if (mqReduce.matches) { stopLenis(); plankton.hide(); } else { startLenis(); plankton.start(); }
+    if (built) rebuild();
+  });
+});
+</script>
+</body>
+</html>
