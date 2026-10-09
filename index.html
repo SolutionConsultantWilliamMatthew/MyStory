@@ -43,6 +43,7 @@
   --tone-amber:rgba(255,170,60,.13);
   --tone-cool:rgba(120,170,255,.11);
   --photo-shade:rgba(2,10,18,.38);
+  --panel-solid:rgba(5,20,31,.95);
   --particle:120,255,235;--particle-alpha:1;
   --f-display:"Sora","Sora Fallback",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --f-body:"Hanken Grotesk","Hanken Fallback",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
@@ -79,6 +80,7 @@
     --tone-amber:rgba(217,138,28,.14);
     --tone-cool:rgba(60,120,208,.11);
     --photo-shade:rgba(2,10,18,.14);
+    --panel-solid:rgba(246,251,251,.96);
     --particle:0,112,100;--particle-alpha:.55;
   }
 }
@@ -95,6 +97,16 @@ a{color:inherit}
 .skip{position:absolute;left:16px;top:-80px;z-index:20;padding:.7em 1.1em;border-radius:10px;background:var(--ink);color:var(--bg-1);font-weight:500;text-decoration:none}
 .skip:focus{top:16px}
 .readbar{position:fixed;top:0;left:0;right:0;z-index:30;height:2px;pointer-events:none}
+.ch-pill{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;z-index:25;display:flex;align-items:center;height:46px;padding:0 6px 0 16px;border:1px solid var(--hair);border-radius:999px;background:var(--panel-solid);box-shadow:0 12px 32px -14px rgba(0,0,0,.55);font:500 .72rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);transform:translate(-50%,-160%);opacity:0;visibility:hidden;transition:transform .45s var(--ease-out),opacity .3s ease,visibility 0s linear .45s}
+.ch-pill[hidden]{display:none}
+.ch-pill.is-on{transform:translate(-50%,0);opacity:1;visibility:visible;transition-delay:0s}
+.ch-pill__now{margin-right:6px;white-space:nowrap}
+.ch-pill__now b{margin-right:.5em;font-weight:500;color:var(--teal)}
+.ch-pill a{--c:var(--teal);display:grid;place-items:center;width:34px;height:44px;border-radius:10px}
+.ch-pill a:nth-of-type(3){--c:var(--amber)}.ch-pill a:nth-of-type(4){--c:var(--cool)}
+.ch-pill i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink-3);transition:transform .3s var(--ease-out)}
+.ch-pill a[aria-current] i{background:var(--c);border-color:var(--c);transform:scale(1.3)}
+.ch{scroll-margin-top:72px}
 .readbar span{display:block;height:100%;background:var(--teal);transform:scaleX(0);transform-origin:left}
 .defs,.lane-probe{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
 .lane-probe{left:var(--lane);top:0}
@@ -227,13 +239,19 @@ main{position:relative}
 .ch{--tone:var(--teal);display:grid;gap:clamp(14px,3vw,56px)}
 .ch--amber{--tone:var(--amber);--line:var(--line-amber)}
 .ch--cool{--tone:var(--cool);--line:var(--line-cool)}
+.ch__side{display:grid;gap:clamp(14px,2.4vh,26px);align-content:start}
 .ch__display{display:flex;flex-direction:column;gap:.35rem}
 .ch__num{font:200 clamp(3rem,1.9rem + 5vw,6.25rem)/.9 var(--f-display);letter-spacing:-.05em;color:var(--tone);font-variant-numeric:lining-nums}
 .ch__key{font:600 var(--step-3)/1.06 var(--f-display);letter-spacing:-.035em;color:var(--ink)}
 .ch__meta{margin:0 0 .7rem;font:500 var(--step--1)/1.55 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
 .ch__loc{display:flex;align-items:center;gap:.4em;margin-top:.1rem;color:var(--tone)}
 .ch__loc svg{width:13px;height:13px;flex:none}
-@media (min-width:1100px){.ch__loc{display:inline-flex;margin:0 0 0 1.2em;vertical-align:baseline}}
+@media (min-width:1100px){
+  /* organisation and location always share one line; the type eases down slightly rather than wrap */
+  .ch__body{container-type:inline-size}
+  .ch__meta{display:flex;align-items:center;white-space:nowrap;font-size:min(var(--step--1),1.9cqi)}
+  .ch__loc{display:inline-flex;margin:0 0 0 1.2em}
+}
 .ch__tag{display:inline-block;margin-right:.6em;padding:.1em .6em;border:1px solid var(--tone);border-radius:99px;color:var(--tone);letter-spacing:.12em}
 .ch__title{margin:0 0 1rem;font:500 var(--step-2)/1.2 var(--f-display);letter-spacing:-.025em}
 .ch__line{margin:0 0 1.25rem;padding-left:1rem;border-left:2px solid var(--tone);font:400 var(--step-1)/1.5 var(--f-display);letter-spacing:-.01em;color:var(--tone);max-width:52ch}
@@ -241,9 +259,9 @@ main{position:relative}
 .ch__points li{position:relative;padding-left:1.4rem}
 .ch__points strong{font-weight:500;color:var(--ink)}
 .ch__points li::before{content:"";position:absolute;left:0;top:.8em;width:.7rem;height:1px;background:var(--tone)}
-.ch__link{display:inline-flex;align-items:center;gap:.45em;margin-top:1.1rem;padding-bottom:.3em;border-bottom:1px solid color-mix(in srgb,var(--tone) 45%,transparent);font:500 var(--step--1)/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tone);text-decoration:none}
+.ch__link{display:inline-flex;align-items:center;gap:.45em;min-height:44px;margin-top:.6rem;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--tone) 45%,transparent);text-underline-offset:.45em;font:500 var(--step--1)/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tone)}
 .ch__link svg{width:14px;height:14px}
-.ch__link:hover{border-bottom-color:currentColor}
+.ch__link:hover{text-decoration-color:currentColor}
 .ch__impact{display:flex;flex-wrap:nowrap;align-items:baseline;gap:.45rem 1.25rem;margin-top:1.15rem;padding-top:.8rem;border-top:1px solid var(--hair)}
 .ch__impact-k{font:500 var(--step--1)/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .ch__stats{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.45rem 1.4rem}
@@ -279,7 +297,7 @@ main{position:relative}
 @media (prefers-reduced-motion:reduce){.gal__thumb::before{display:none}}
 
 /* Photo viewer */
-.lightbox{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(16px,4vw,64px) clamp(64px,7vw,96px);border:0;background:rgba(2,8,14,.94);color:#e9f4f6;overflow:hidden}
+.lightbox{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(16px,4vw,64px) clamp(64px,7vw,96px);border:0;background:rgba(2,8,14,.97);color:#e9f4f6;overflow:hidden}
 .lightbox[open]{display:grid;place-items:center;animation:fade .25s ease-out}
 .lightbox::backdrop{background:transparent}
 .lightbox__fig{margin:0;display:grid;justify-items:center;gap:1rem;min-height:0;max-height:100%}
@@ -295,10 +313,21 @@ main{position:relative}
 .lightbox__prev{left:12px;top:50%;margin-top:-24px}
 .lightbox__next{right:12px;top:50%;margin-top:-24px}
 .lightbox :focus-visible{outline-color:#3ff0dc}
-html.lb-open{overflow:hidden}
+html.lb-open,html.lb-open body{overflow:hidden;overscroll-behavior:none}
+a,button{-webkit-tap-highlight-color:transparent}
+.gal__stage{touch-action:pan-y}
+.lightbox{overscroll-behavior:contain;touch-action:none}
+@media (max-width:599px){
+  .lightbox{padding:60px 12px 100px;background:#02080e}
+  .lightbox__img{max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
+  .lightbox__prev,.lightbox__next{top:auto;bottom:calc(24px + env(safe-area-inset-bottom,0px));margin-top:0}
+  .lightbox__prev{left:calc(50% - 64px)}.lightbox__next{right:calc(50% - 64px)}
+}
 @media (min-width:1100px){
-  .ch{grid-template-columns:auto minmax(0,1fr);column-gap:clamp(40px,4.5vw,72px);grid-template-areas:"disp body" "photos body";grid-template-rows:auto 1fr;row-gap:clamp(18px,3vh,32px);align-items:start}
-  .ch__display{grid-area:disp}.gal{grid-area:photos}.ch__body{grid-area:body}
+  .ch{grid-template-columns:auto minmax(0,1fr);column-gap:clamp(40px,4.5vw,72px);grid-template-areas:"side body";row-gap:clamp(18px,3vh,32px);align-items:start}
+  .ch__side{grid-area:side}.ch__body{grid-area:body}
+  .ch__side{position:sticky;top:clamp(76px,11vh,110px)}
+  .ch-stage .ch__side{position:static}
 }
 .tone{position:absolute;inset:0;opacity:0;pointer-events:none;z-index:0}
 .tone--amber{background:radial-gradient(60% 60% at 30% 52%,var(--tone-amber),transparent 72%)}
@@ -383,9 +412,9 @@ html.lb-open{overflow:hidden}
 .bring__n{color:var(--ink-3);letter-spacing:.06em}
 .bring__lead{transition:color .4s ease}
 .bring-js .bring__item:not(.is-active) .bring__lead{color:var(--ink-2)}
-.bring__proof{display:inline-flex;align-items:center;gap:.45em;margin-top:.9rem;padding-bottom:.25em;border-bottom:1px solid color-mix(in srgb,var(--teal) 40%,transparent);font:500 var(--step--1)/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);text-decoration:none}
+.bring__proof{display:inline-flex;align-items:center;gap:.45em;min-height:44px;margin-top:.4rem;font:500 var(--step--1)/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--teal) 40%,transparent);text-underline-offset:.45em}
 .bring__proof svg{width:14px;height:14px;transition:transform .3s var(--ease-out)}
-.bring__proof:hover{border-bottom-color:currentColor}
+.bring__proof:hover{text-decoration-color:currentColor}
 .bring__proof:hover svg{transform:translateX(3px)}
 .bring__meter{display:none}
 @media (min-width:1100px){
@@ -408,6 +437,10 @@ html.lb-open{overflow:hidden}
 .close__sub strong{font-weight:600;color:var(--teal)}
 .contact{position:relative;display:flex;flex-direction:column;gap:.4rem;min-height:34vh;padding:clamp(8px,2vh,24px) var(--content-r) clamp(36px,7vh,72px) var(--content-l)}
 .contact p{margin:0}
+.contact>:where(:not(.current)){position:relative;z-index:1}
+.photo-ring{fill:none;stroke:var(--line);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+.photo-ring.is-lit{animation:photoPulse 1.6s var(--ease-out) 1 both}
+@keyframes photoPulse{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.32)}}
 .contact__grid{display:grid;gap:clamp(28px,5vh,40px);align-items:center}
 .contact__id{display:flex;align-items:center;gap:clamp(16px,2vw,24px)}
 .contact__photo{flex:none;display:grid;place-items:center;width:clamp(112px,12vw,160px);aspect-ratio:1;overflow:hidden;border-radius:50%;background:var(--panel);box-shadow:0 0 0 1px var(--hair),0 0 0 7px color-mix(in srgb,var(--line) 14%,transparent);font:600 1.4rem/1 var(--f-display);letter-spacing:-.03em;color:var(--teal)}
@@ -419,12 +452,12 @@ html.lb-open{overflow:hidden}
 .contact__list li:last-child{border-bottom:1px solid var(--hair)}
 .contact__k{font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .contact__v{font:500 var(--step-1)/1.3 var(--f-mono);color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
-a.contact__v{text-decoration:underline;text-decoration-color:var(--hair);text-underline-offset:.3em;text-decoration-thickness:1px}
+a.contact__v{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-decoration-color:var(--hair);text-underline-offset:.3em;text-decoration-thickness:1px}
 a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
 .contact__email{-webkit-user-select:all;user-select:all}
 @media (min-width:900px){.contact__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(32px,6vw,96px)}}
 @media (max-width:599px){.contact__list li{grid-template-columns:minmax(0,1fr) auto;padding:.7rem 0}.contact__k{grid-column:1/-1}.contact__v{font-size:var(--step-0)}.contact__email-row .contact__v{grid-column:1/-1}.contact__email-row .copy{justify-self:start}}
-.pill{display:inline-flex;align-items:center;gap:.5em;min-height:42px;padding:.6em 1.15em;border:1px solid var(--hair);border-radius:99px;background:var(--panel);color:var(--ink);font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .35s var(--ease-out)}
+.pill{display:inline-flex;align-items:center;gap:.5em;min-height:44px;padding:.6em 1.15em;border:1px solid var(--hair);border-radius:99px;background:var(--panel);color:var(--ink);font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .35s var(--ease-out)}
 .pill:hover{border-color:var(--line);transform:translateY(-2px)}
 .pill[hidden]{display:none}
 .status{min-height:1.5em;margin-top:.4rem!important;font:400 var(--step--1)/1.5 var(--f-mono);color:var(--teal)}
@@ -445,6 +478,10 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
 <body>
 <a class="skip" href="#contact">Skip to contact details</a>
 <div class="readbar" aria-hidden="true"><span></span></div>
+<nav class="ch-pill" aria-label="Jump to a chapter" hidden>
+  <span class="ch-pill__now" aria-hidden="true"><b>01</b>Using it</span>
+  <a href="#ch-1" aria-label="Chapter 1: Using it"><i></i></a><a href="#ch-2" aria-label="Chapter 2: Scaling it"><i></i></a><a href="#ch-3" aria-label="Chapter 3: Shaping it"><i></i></a><a href="#ch-4" aria-label="Chapter 4: Learning to sell value"><i></i></a>
+</nav>
 
 <svg class="defs" aria-hidden="true" focusable="false" width="0" height="0">
   <defs>
@@ -470,16 +507,16 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
   <section class="scene hero" id="hero" aria-labelledby="hero-title">
     <svg class="current" aria-hidden="true" focusable="false"></svg>
     <div class="hero__inner">
-      <p class="eyebrow hero__eyebrow">Operator · Team lead · Builder · Seller</p>
+      <p class="eyebrow hero__eyebrow">Operator · Team lead · Trainer · Product designer</p>
       <h1 class="hero__title" id="hero-title">
         <span class="mask"><span>I’ve seen <span class="accent">Kraken</span></span></span>
         <span class="mask"><span>from every side.</span></span>
       </h1>
-      <p class="hero__sub">I’ve used Kraken on the floor, led a team on it, scaled it offshore and helped build its first distribution product. This is that story, in about two minutes.</p>
+      <p class="hero__sub">I’ve used Kraken on the floor, led a team on it, scaled it offshore and helped shape its first distribution product. This is that story, in about two minutes.</p>
     </div>
     <div class="scroll-cue" aria-hidden="true">
       <div class="scroll-cue__inner">
-        <span class="scroll-cue__label"><span class="cue-static">Scroll to explore</span><span class="cue-live">Scroll to meet <span class="cue-words"><span class="cue-word is-on">the energy specialist</span><span class="cue-word">the team lead</span><span class="cue-word">the trainer</span><span class="cue-word">the product builder</span><span class="cue-word">the value seller</span></span></span></span>
+        <span class="scroll-cue__label"><span class="cue-static">Scroll to explore</span><span class="cue-live">Scroll to meet <span class="cue-words"><span class="cue-word is-on">the energy specialist</span><span class="cue-word">the team lead</span><span class="cue-word">the trainer</span><span class="cue-word">the product designer</span><span class="cue-word">the value seller</span></span></span></span>
         <span class="scroll-cue__track"><span class="scroll-cue__dot"></span></span>
       </div>
     </div>
@@ -509,7 +546,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
       <ol>
         <li><a href="#ch-1" aria-label="Chapter 1: Using it">1</a></li>
         <li><a href="#ch-2" aria-label="Chapter 2: Scaling it">2</a></li>
-        <li><a href="#ch-3" aria-label="Chapter 3: Building it">3</a></li>
+        <li><a href="#ch-3" aria-label="Chapter 3: Shaping it">3</a></li>
         <li><a href="#ch-4" aria-label="Chapter 4: Learning to sell value">4</a></li>
       </ol>
     </nav>
@@ -521,6 +558,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
 
     <div class="ch-list">
       <article class="ch" id="ch-1" aria-labelledby="ch-1-title">
+        <div class="ch__side">
         <div class="ch__display" aria-hidden="true"><span class="ch__num">01</span><span class="ch__key">Using it</span></div>
         <div class="gal" role="group" aria-label="Photos from chapter 1">
         <div class="gal__stage"><div class="gal__track">
@@ -532,6 +570,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
           <button class="gal__thumb" type="button" aria-label="Show photo 2 of 2" aria-pressed="false"><img src="img/ch1-team-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
         </div>
       </div>
+        </div>
         <div class="ch__body">
           <p class="ch__meta">Origin Energy · Kraken Customer<span class="ch__loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Melbourne, VIC, Australia</span></p>
           <h3 class="ch__title" id="ch-1-title"><span class="vh">Chapter 1. </span>Using it every day: from energy specialist to team lead</h3>
@@ -550,6 +589,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
       </article>
 
       <article class="ch" id="ch-2" aria-labelledby="ch-2-title">
+        <div class="ch__side">
         <div class="ch__display" aria-hidden="true"><span class="ch__num">02</span><span class="ch__key">Scaling it</span></div>
         <div class="gal" role="group" aria-label="Photos from chapter 2">
         <div class="gal__stage"><div class="gal__track">
@@ -563,6 +603,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
           <button class="gal__thumb" type="button" aria-label="Show photo 3 of 3" aria-pressed="false"><img src="img/ch2-pumpkins-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
         </div>
       </div>
+        </div>
         <div class="ch__body">
           <p class="ch__meta">Origin Energy · Kraken Customer<span class="ch__loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Manila, Philippines</span></p>
           <h3 class="ch__title" id="ch-2-title"><span class="vh">Chapter 2. </span>Scaling the energy specialist model offshore</h3>
@@ -582,7 +623,8 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
       </article>
 
       <article class="ch ch--amber" id="ch-3" aria-labelledby="ch-3-title">
-        <div class="ch__display" aria-hidden="true"><span class="ch__num">03</span><span class="ch__key">Building it</span></div>
+        <div class="ch__side">
+        <div class="ch__display" aria-hidden="true"><span class="ch__num">03</span><span class="ch__key">Shaping it</span></div>
         <div class="gal" role="group" aria-label="Photos from chapter 3">
         <div class="gal__stage"><div class="gal__track">
           <figure class="gal__slide is-on"><img class="gal__bg" src="img/ch3-lead-b.webp" width="760" height="570" alt="" decoding="async"><img class="gal__img" src="img/ch3-lead-m.webp" width="760" height="570" alt="A group wearing orange hard hats on a site visit" loading="lazy" decoding="async"></figure>
@@ -595,14 +637,15 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
           <button class="gal__thumb" type="button" aria-label="Show photo 3 of 3" aria-pressed="false"><img src="img/ch3-waterside-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
         </div>
       </div>
+        </div>
         <div class="ch__body">
           <p class="ch__meta">Essential Energy · Kraken Distribution<span class="ch__loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Port Macquarie, NSW, Australia</span></p>
-          <h3 class="ch__title" id="ch-3-title"><span class="vh">Chapter 3. </span>Building it from the ground up</h3>
+          <h3 class="ch__title" id="ch-3-title"><span class="vh">Chapter 3. </span>Helping shape its first distribution product</h3>
           <ul class="ch__points">
             <li><strong>On the inaugural team.</strong> Shaping the functional requirements for the first Kraken Distribution product: Kraken’s first distributor meter-to-cash implementation, anywhere.</li>
             <li><strong>Service orders and B2B market transactions.</strong> Worked hand in hand with multiple Kraken CDLs, taking requirements and solution cards through to release.</li>
             <li><strong>Then reporting.</strong> Developed functional and technical reporting requirements, in line with Kraken’s reporting CDLs.</li>
-            <li><strong>Lessons that carry forward.</strong> The product we built, and what we learnt building it, are the foundation for the Kraken distribution implementations that follow.</li>
+            <li><strong>Lessons that carry forward.</strong> The product our team delivered, and what we learnt along the way, are the foundation for the Kraken distribution implementations that follow.</li>
           </ul>
           <div class="ch__impact"><span class="ch__impact-k">Impact</span><ul class="ch__stats" aria-label="Chapter 3 impact">
             <li><b>1st</b> Kraken Distribution implementation</li>
@@ -613,6 +656,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
       </article>
 
       <article class="ch ch--cool" id="ch-4" aria-labelledby="ch-4-title">
+        <div class="ch__side">
         <div class="ch__display" aria-hidden="true"><span class="ch__num">04</span><span class="ch__key">Learning to sell value</span></div>
         <div class="gal" role="group" aria-label="Photos from chapter 4">
         <div class="gal__stage"><div class="gal__track">
@@ -626,6 +670,7 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
           <button class="gal__thumb" type="button" aria-label="Show photo 3 of 3" aria-pressed="false"><img src="img/ch4-badge-t.webp" width="160" height="120" alt="" loading="lazy" decoding="async"></button>
         </div>
       </div>
+        </div>
         <div class="ch__body">
           <p class="ch__meta">SAP · Enterprise software<span class="ch__loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Melbourne, VIC, Australia</span></p>
           <h3 class="ch__title" id="ch-4-title"><span class="vh">Chapter 4. </span>At SAP: learning how enterprise software is sold</h3>
@@ -693,8 +738,8 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
         <div class="value__brand"><img class="value__logo value__logo--essential" src="img/logo-essential.png" width="324" height="114" alt=""><div><h3 class="vh">Essential Energy</h3><p class="value__meta">Distribution · Kraken Distribution</p></div></div>
         <ul class="wins">
           <li><b>A global first</b><span>Kraken’s first distributor meter-to-cash implementation, anywhere.</span></li>
-          <li><b>A product built from zero</b><span>The service orders product, designed with no existing playbook.</span></li>
-          <li><b>A foundation for what follows</b><span>The product, and the lessons learnt building it, underpin the Kraken distribution implementations that follow.</span></li>
+          <li><b>A product designed from scratch</b><span>The service orders product, shaped with no existing playbook.</span></li>
+          <li><b>A foundation for what follows</b><span>The product, and the lessons learnt delivering it, underpin the Kraken distribution implementations that follow.</span></li>
         </ul>
       </div>
     </div>
@@ -735,8 +780,8 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
       <li class="bring__item">
         <p class="bring__k"><span class="bring__n" aria-hidden="true">04</span>Technical queries and tenders</p>
         <h3 class="bring__lead">I know what it takes to deliver.</h3>
-        <p>I’ve taken functional and technical requirements through to release on Kraken’s first distribution build. I can answer the hard questions credibly, and I won’t promise what can’t be delivered.</p>
-        <a class="bring__proof" href="#ch-3" data-ch="2">See it in Chapter 3 · Building it<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p>I’ve taken functional and technical requirements through to release on Kraken’s first distribution implementation. I can answer the hard questions credibly, and I won’t promise what can’t be delivered.</p>
+        <a class="bring__proof" href="#ch-3" data-ch="2">See it in Chapter 3 · Shaping it<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </li>
       <li class="bring__item">
         <p class="bring__k"><span class="bring__n" aria-hidden="true">05</span>Sales support</p>
@@ -758,11 +803,12 @@ a.contact__v:hover{color:var(--teal);text-decoration-color:currentColor}
     <svg class="current" aria-hidden="true" focusable="false"></svg>
     <p class="eyebrow close__eyebrow">The next chapter</p>
     <h2 class="close__line" id="close-title">Ready to help utilities across APAC see what Kraken can do.</h2>
-    <p class="close__sub">I’ve used Kraken on the floor, scaled it offshore and built it from the ground up. Few people can show a utility Kraken from every side. <strong>I can.</strong></p>
+    <p class="close__sub">I’ve used Kraken on the floor, scaled it offshore and helped shape its first distribution product. Few people can show a utility Kraken from every side. <strong>I can.</strong></p>
   </section>
 </main>
 
 <footer class="contact" id="contact" aria-labelledby="contact-title">
+  <svg class="current" aria-hidden="true" focusable="false"></svg>
   <h2 class="vh" id="contact-title">Contact</h2>
   <div class="contact__grid">
     <div class="contact__id">
@@ -823,6 +869,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  /* ---------- Touch swipes (horizontal: next/previous; optional swipe down) ---------- */
+  function onSwipe(el, { left, right, down }) {
+    let x0 = 0, y0 = 0, id = null;
+    el.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') return; id = e.pointerId; x0 = e.clientX; y0 = e.clientY; }, { passive: true });
+    el.addEventListener('pointercancel', () => { id = null; }, { passive: true });
+    el.addEventListener('pointerup', e => {
+      if (e.pointerId !== id) return;
+      id = null;
+      const dx = e.clientX - x0, dy = e.clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+        el.dataset.swiped = '1'; setTimeout(() => { delete el.dataset.swiped; }, 400);
+        (dx < 0 ? left : right)();
+      } else if (down && dy > 90 && dy > Math.abs(dx) * 1.3) down();
+    }, { passive: true });
+  }
+
   /* ---------- Chapter galleries: one large photo, auto-advancing, with thumbnails ---------- */
   const galleries = $$('.gal').map(g => {
     const slides = $$('.gal__slide', g), thumbs = $$('.gal__thumb', g);
@@ -840,6 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (slides.length > 1) {
       $('.gal__thumbs', g).hidden = false;
       thumbs.forEach((t, k) => t.addEventListener('click', () => api.go(k)));
+      onSwipe($('.gal__stage', g), { left: () => api.go(api.cur + 1), right: () => api.go(api.cur - 1) });
       // the progress bar under the active thumbnail is the timer; hovering, focus or leaving the screen pauses it
       g.addEventListener('animationend', e => {
         if (e.animationName === 'galprog' && e.target.classList.contains('is-on') && !matchMedia('(prefers-reduced-motion: reduce)').matches) api.go(api.cur + 1);
@@ -875,16 +938,18 @@ document.addEventListener('DOMContentLoaded', () => {
       b.type = 'button'; b.className = 'gal__open'; b.innerHTML = icon;
       b.setAttribute('aria-label', 'Enlarge photos from chapter ' + Number($('.ch__num', ch).textContent));
       b.addEventListener('click', () => {
+        if ($('.gal__stage', gal.g).dataset.swiped) return; // that touch was a swipe, not a tap
         set = items; opener = b; show(gal.cur);
         dlg.showModal(); root.classList.add('lb-open');
         if (window.__storyLenis) window.__storyLenis.stop();
       });
       $('.gal__stage', gal.g).append(b);
     });
+    onSwipe(dlg, { left: () => { if (set.length > 1) show(idx + 1); }, right: () => { if (set.length > 1) show(idx - 1); }, down: () => dlg.close() });
     prev.addEventListener('click', () => show(idx - 1));
     next.addEventListener('click', () => show(idx + 1));
     $('.lightbox__close', dlg).addEventListener('click', () => dlg.close());
-    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('click', e => { if (e.target === dlg && !dlg.dataset.swiped) dlg.close(); });
     dlg.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft' && set.length > 1) show(idx - 1);
       if (e.key === 'ArrowRight' && set.length > 1) show(idx + 1);
@@ -894,6 +959,39 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.__storyLenis) window.__storyLenis.start();
       if (opener) opener.focus({ preventScroll: true });
     });
+  })();
+
+  /* ---------- Chapter navigator: shown in the vertical layout while reading the chapters ---------- */
+  (() => {
+    const pill = $('.ch-pill');
+    if (!pill) return;
+    pill.hidden = false;
+    const arts = $$('.ch'), links = $$('a', pill), now = $('.ch-pill__now', pill), sec = $('#chapters');
+    const names = arts.map(a => $('.ch__key', a).textContent);
+    let cur = -1, queued = false;
+    const update = () => {
+      queued = false;
+      const r = sec.getBoundingClientRect();
+      const on = !root.classList.contains('ch-stage') && r.top < innerHeight * 0.3 && r.bottom > innerHeight * 0.55;
+      pill.classList.toggle('is-on', on);
+      if (!on) return;
+      let i = 0;
+      arts.forEach((a, k) => { if (a.getBoundingClientRect().top < innerHeight * 0.45) i = k; });
+      if (i === cur) return;
+      cur = i;
+      now.innerHTML = '<b>0' + (i + 1) + '</b>' + names[i];
+      links.forEach((l, k) => { if (k === i) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current'); });
+    };
+    links.forEach((l, k) => l.addEventListener('click', e => {
+      if (root.classList.contains('ch-stage')) return;
+      e.preventDefault();
+      const y = arts[k].getBoundingClientRect().top + scrollY - 72;
+      if (window.__storyLenis) window.__storyLenis.scrollTo(y, { duration: 1 });
+      else window.scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    }));
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
   })();
 
   /* ---------- Scroll prompt: cycle through every side ---------- */
@@ -1063,6 +1161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mqReduce = matchMedia('(prefers-reduced-motion: reduce)');
   const isTouch = matchMedia('(hover: none) and (pointer: coarse)').matches;
+  const PIN_CHAPTERS = false;
   const NS = 'http://www.w3.org/2000/svg';
   const state = { depth: 0 };
   let ctx = null, lenis = null, chTl = null, built = false;
@@ -1156,6 +1255,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function strand(svg, d, o = {}) {
     const g = svgEl('g', { class: 'strand' });
+    if (o.lane) g.dataset.lane = '1';
     const glow = svgEl('path', { class: 'strand__glow', d });
     const line = svgEl('path', { class: 'strand__line', d });
     if (o.stroke) { glow.style.stroke = o.stroke; line.style.stroke = o.stroke; }
@@ -1209,8 +1309,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function prepSvg(sec) {
     const svg = $('.current', sec);
     svg.replaceChildren();
-    const W = sec.offsetWidth, H = sec.offsetHeight;
-    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    const rr = sec.getBoundingClientRect(), W = rr.width, H = rr.height; // exact (fractional) size so pieces meet with no hairline gap
+    svg.setAttribute('viewBox', '0 0 ' + W.toFixed(2) + ' ' + H.toFixed(2));
     svg.setAttribute('width', W); svg.setAttribute('height', H);
     return { svg, W, H };
   }
@@ -1232,6 +1332,27 @@ document.addEventListener('DOMContentLoaded', () => {
          + ' C' + P(x + a, y0 + seg * 0.7) + ' ' + P(x, y0 + seg * 0.8) + ' ' + P(x, y0 + seg);
     }
     return d;
+  }
+
+  /* ---------- The current, drawn from one source ----------
+     Every main piece of the line derives its progress from the same scroll position each frame,
+     so a piece can only draw once the piece before it is complete: no gaps, however fast you scroll. */
+  let lanePieces = [];
+  const HEAD = 0.8; // the drawing tip sits 80% of the way down the screen
+  function measureLane() {
+    lanePieces.forEach(lp => { if (lp.el) { const r = lp.el.getBoundingClientRect(); lp.top = r.top + window.scrollY; lp.h = r.height; } });
+  }
+  function paintLane() {
+    if (!lanePieces.length) return;
+    const y = window.scrollY, vh = innerHeight, head = y + vh * HEAD;
+    for (const lp of lanePieces) {
+      let p;
+      if (lp.mode === 'pin') p = lp.st ? clamp01((y - lp.st.start) / Math.max(1, lp.st.end - lp.st.start)) : 0;
+      else if (lp.mode === 'heroFlow') p = clamp01(y / Math.max(1, lp.h - vh * HEAD));
+      else if (lp.mode === 'tail') p = clamp01((head - lp.top) / Math.max(1, ScrollTrigger.maxScroll(window) + vh * HEAD - lp.top - 2));
+      else p = clamp01((head - lp.top) / Math.max(1, lp.h));
+      lp.s.p = p;
+    }
   }
 
   /* ---------- Results count-up (once) ---------- */
@@ -1345,6 +1466,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function build() {
     const R = mqReduce.matches;
     const VW = innerWidth, VH = innerHeight;
+    lanePieces = [];
     root.classList.remove('hero-pin', 'ch-stage');
     $$('.ch').forEach(a => a.classList.remove('is-active'));
     $$('.timeline__row').forEach(r => r.classList.remove('is-current'));
@@ -1352,8 +1474,10 @@ document.addEventListener('DOMContentLoaded', () => {
     $$('.rail a').forEach(a => { a.removeAttribute('aria-current'); a.classList.remove('is-lit'); });
     resetFigures();
     if (!R) {
-      if (VW >= 768 && VH >= 520) root.classList.add('hero-pin');
-      if (VW >= 768) { root.classList.add('ch-stage'); if (!chaptersFit()) root.classList.remove('ch-stage'); }
+      // touch devices keep fully native scrolling: pinned sections + momentum + collapsing browser bars feel jumpy on phones and tablets
+      if (!isTouch && VW >= 768 && VH >= 520) root.classList.add('hero-pin');
+      // the pinned chapter stage is switched off: chapters scroll natively (set PIN_CHAPTERS to true to compare)
+      if (PIN_CHAPTERS && !isTouch && VW >= 768) { root.classList.add('ch-stage'); if (!chaptersFit()) root.classList.remove('ch-stage'); }
     }
     const M = { heroPin: root.classList.contains('hero-pin'), chStage: root.classList.contains('ch-stage') };
     const lane = laneX();
@@ -1388,7 +1512,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const O = [lane, top];
         const d1 = 'M' + P(lane, top) + ' L' + P(lane, H * 0.6);
         const d2 = 'M' + P(lane, H * 0.6) + ' L' + P(lane, H);
-        const s1 = strand(svg, d1), s2 = strand(svg, d2);
+        const s1 = strand(svg, d1, { lane: true }), s2 = strand(svg, d2, { lane: true });
         const orb = svgEl('g', { transform: 'translate(' + P(O[0], O[1]) + ')' });
         const orbIn = svgEl('g', { class: 'orb' });
         const breath = svgEl('g', { class: 'orb__breath' });
@@ -1408,7 +1532,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else s1.p = 1;
 
           if (M.heroPin) {
-            gsap.timeline({
+            const heroTl = gsap.timeline({
               defaults: { ease: 'none' },
               scrollTrigger: {
                 trigger: hero, start: 'top top', end: '+=55%', pin: true, scrub: 0.6, anticipatePin: 1,
@@ -1416,12 +1540,12 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             })
               .to(inner, { y: -VH * 0.14, scale: 0.84, opacity: 0.12, duration: 1 }, 0)
-              .to(tentLayer.el, { y: VH * 0.2, opacity: 0.25, duration: 1 }, 0)
-              .fromTo(s2, { p: 0 }, { p: 1, duration: 1 }, 0);
+              .to(tentLayer.el, { y: VH * 0.2, opacity: 0.25, duration: 1 }, 0);
+            lanePieces.push({ s: s2, mode: 'pin', st: heroTl.scrollTrigger });
           } else {
             gsap.to(inner, { y: -VH * 0.1, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.4 } });
             gsap.to(tentLayer.el, { y: VH * 0.12, opacity: 0.3, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.4 } });
-            gsap.fromTo(s2, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom 80%', scrub: 0.4 } });
+            lanePieces.push({ s: s2, mode: 'heroFlow', el: hero });
           }
         }
       }
@@ -1510,7 +1634,7 @@ document.addEventListener('DOMContentLoaded', () => {
           tl.addLabel('end', endT);
           const eras = $$('.timeline__row', chs);
           const cueN = $('.stage-cue__n', chs), cueLabel = $('.stage-cue__label', chs);
-          const nextNames = ['Scaling it', 'Building it', 'Learning to sell value', 'Outcomes'];
+          const nextNames = ['Scaling it', 'Shaping it', 'Learning to sell value', 'Outcomes'];
           let active = -1;
           const setActive = i => {
             if (i === active) return;
@@ -1534,11 +1658,11 @@ document.addEventListener('DOMContentLoaded', () => {
             [0, '--line'], [(ys[2] - 60) / H, '--line'], [ys[2] / H, '--line-amber'],
             [(ys[3] - 60) / H, '--line-amber'], [ys[3] / H, '--line-cool'], [1, '--line-cool']
           ]);
-          const s = strand(svg, lanePath(lane, H, 0), { stroke: grad });
+          const s = strand(svg, lanePath(lane, H, 0), { stroke: grad, lane: true });
           ys.forEach((y, i) => s.nodeAtY(y, i === 2 ? 'node--amber' : i === 3 ? 'node--cool' : ''));
           if (R) s.p = 1;
           else {
-            gsap.fromTo(s, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: chs, start: 'top 80%', end: 'bottom 80%', scrub: 0.5 } });
+            lanePieces.push({ s, el: chs });
             arts.forEach(a => {
               const ph = $('.gal__stage', a);
               if (ph) {
@@ -1561,7 +1685,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const figs = $$('.fig', sec), wins = $$('.wins li', sec);
         const split = heads[1].x > heads[0].x + 60;
         const forkY = split ? heads[0].y - 64 : 0;
-        const trunk = strand(svg, lanePath(lane, H, 0), { noSpark: true });
+        const trunk = strand(svg, lanePath(lane, H, 0), { noSpark: true, lane: true });
         const branches = heads.map((hb, i) => {
           const fy = split ? hb.y - 18 : hb.y + hb.h * 0.32, fx = split ? hb.x + 6 : Math.max(lane + 10, hb.x - 12);
           const sy = split ? forkY : fy - 40;
@@ -1576,7 +1700,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (R) { trunk.p = 1; branches.forEach(s => { s.done = true; s.p = 1; }); }
         else {
           hideUncounted();
-          gsap.fromTo(trunk, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: sec, start: 'top 80%', end: 'bottom 80%', scrub: 0.5 } });
+          lanePieces.push({ s: trunk, el: sec });
           branches.forEach((s, i) => gsap.fromTo(s, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: cols[i], start: split ? 'top 92%' : 'top 82%', end: split ? 'top 62%' : 'top 58%', scrub: 0.5 } }));
           wins.forEach(w => gsap.fromTo(w, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power1.inOut', scrollTrigger: { trigger: w, start: 'top 88%', end: 'top 64%', scrub: 0.5 } }));
         }
@@ -1585,37 +1709,56 @@ document.addEventListener('DOMContentLoaded', () => {
       /* 5 · What I'd bring */
       {
         const bring = $('#bring'), { svg, H } = prepSvg(bring);
-        const s = strand(svg, lanePath(lane, H, amp));
+        const s = strand(svg, lanePath(lane, H, amp), { lane: true });
         const items = $$('.bring__item', bring);
         items.forEach(it => s.nodeAtY(box($('.bring__lead', it), bring).y + 20));
         if (R) s.p = 1;
         else {
-          gsap.fromTo(s, { p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: bring, start: 'top 80%', end: 'bottom 80%', scrub: 0.5 } });
+          lanePieces.push({ s, el: bring });
           items.forEach(it => gsap.fromTo(it, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power1.inOut', scrollTrigger: { trigger: it, start: 'top 86%', end: 'top 58%', scrub: 0.5 } }));
         }
       }
 
-      /* 6 · Close: the current settles into a horizon */
+      /* 6 · Close: the current runs on past the closing line... */
       {
-        const close = $('#close'), { svg, W, H } = prepSvg(close);
-        const tb = box($('.close__sub', close), close);
-        const hy = Math.min(H - 24, tb.b + Math.max(48, H * 0.13));
-        const r = VW >= 768 ? 56 : 22;
-        const down = strand(svg, 'M' + P(lane, 0) + ' L' + P(lane, hy - r) + ' Q' + P(lane, hy) + ' ' + P(lane + r, hy) + ' L' + P(W, hy));
+        const close = $('#close'), { svg, H } = prepSvg(close);
+        const down = strand(svg, 'M' + P(lane, 0) + ' L' + P(lane, H), { lane: true });
         const words = $$('.close__vis .w', close);
-        const contact = $$('.contact > :not(.vh)');
         if (R) down.p = 1;
         else {
+          lanePieces.push({ s: down, el: close });
           gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: close, start: 'top 85%', end: 'bottom 75%', scrub: 0.6 } })
-            .fromTo(down, { p: 0 }, { p: 1, duration: 1 }, 0)
             .fromTo($('.close__eyebrow', close), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 0.1)
             .fromTo(words, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: 'power2.out' }, 0.2)
             .fromTo($$('.close__sub', close), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.1, ease: 'power2.out' }, 0.62);
-          gsap.fromTo(contact, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '.contact', start: 'top 96%', end: 'top 74%', scrub: 0.5 } });
+        }
+      }
+
+      /* ...and ends by circling the photo: the thread of the story finishes with the person */
+      {
+        const foot = $('#contact'), { svg } = prepSvg(foot);
+        const ph = box($('.contact__photo', foot), foot);
+        const cx = ph.x + ph.w / 2, cy = ph.y + ph.h / 2, Rr = ph.w / 2 + 12, top = cy - Rr;
+        const r = Math.max(4, Math.min(26, top - 2, cx - lane - 4));
+        const d = 'M' + P(lane, 0) + ' L' + P(lane, top - r) + ' Q' + P(lane, top) + ' ' + P(lane + r, top) + ' L' + P(cx, top)
+          + ' A' + Rr.toFixed(1) + ' ' + Rr.toFixed(1) + ' 0 1 1 ' + P(cx, cy + Rr) + ' A' + Rr.toFixed(1) + ' ' + Rr.toFixed(1) + ' 0 1 1 ' + P(cx, top);
+        const loop = strand(svg, d, { lane: true });
+        const ring = svgEl('circle', { class: 'photo-ring', cx: cx.toFixed(1), cy: cy.toFixed(1), r: Rr.toFixed(1) });
+        svg.append(ring);
+        loop.onDone = () => ring.classList.add('is-lit');
+        const contact = $$('.contact > :not(.vh):not(.current)');
+        if (R) { loop.p = 1; }
+        else {
+          // starts exactly as the close section's piece finishes; completes at the very end of the page
+          lanePieces.push({ s: loop, el: foot, mode: 'tail' });
+          gsap.fromTo(contact, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: foot, start: 'top 96%', end: 'top 74%', scrub: 0.5 } });
         }
       }
     });
   }
+
+  ScrollTrigger.addEventListener('refresh', () => { measureLane(); paintLane(); });
+  gsap.ticker.add(paintLane);
 
   function rebuild() {
     const max = Math.max(1, ScrollTrigger.maxScroll(window));
@@ -1647,9 +1790,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Proof links in What I'd bring jump to the chapter that backs them up */
   $$('.bring__proof').forEach(a => a.addEventListener('click', e => {
-    if (!chTl || !chTl.scrollTrigger) return;
     e.preventDefault();
-    scrollToY(chTl.scrollTrigger.labelToScroll('c' + a.dataset.ch));
+    if (chTl && chTl.scrollTrigger) scrollToY(chTl.scrollTrigger.labelToScroll('c' + a.dataset.ch));
+    else scrollToY($(a.getAttribute('href')).getBoundingClientRect().top + window.scrollY - 72);
   }));
 
   /* Rail: jump to a chapter inside the pinned stage */
